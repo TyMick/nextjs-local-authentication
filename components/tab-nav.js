@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 
 const links = ["Dashboard", "Events", "Friends", "Groups", "Settings"];
 
-export default (props) => (
+export default props => (
   <Nav variant="tabs" activeKey={"/" + props.active}>
     {links.map(link => (
       <Link href={"/" + link.toLowerCase()} passHref key={link.toLowerCase()}>
