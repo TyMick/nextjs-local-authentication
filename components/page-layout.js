@@ -16,7 +16,7 @@ export default ({ children, title }) => (
     </header>
 
     <main>
-      <Container className="pt-3">
+      <Container fluid className="pt-3">
         <TabNav active={title.toLowerCase()} />
 
         {children}
