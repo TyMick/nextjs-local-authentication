@@ -3,10 +3,10 @@
 import Head from "next/head";
 import Navbar from "./navbar";
 import Container from "react-bootstrap/Container";
-import TabNav from "./tab-nav";
+import PageNav from "./page-nav";
 
 export default ({ children, title }) => (
-  <div>
+  <div className="bg-light">
     <Head>
       <title>{"Stars Align" + (title && " | " + title)}</title>
     </Head>
@@ -16,11 +16,9 @@ export default ({ children, title }) => (
     </header>
 
     <main>
-      <Container fluid className="pt-3">
-        <TabNav active={title.toLowerCase()} />
+      <PageNav active={title.toLowerCase()} />
 
-        {children}
-      </Container>
+      {children}
     </main>
   </div>
 );
