@@ -5,7 +5,7 @@ import PageLayout from "../components/page-layout";
 import "../styles.scss";
 
 export default () => (
-  <PageLayout title="Dashboard">
+  <PageLayout title="">
     
   </PageLayout>
 );
