@@ -13,7 +13,7 @@ export default () => {
       initialValues={{ username: "", password: "" }}
       validationSchema={Yup.object({
         username: Yup.string()
-          .matches(/^\w+$/, "Username can only consist of letters, numbers, and underscores.")
+          .matches(/^\w+$/, "Usernames can only consist of letters, numbers, and underscores.")
           .required("Please choose a username."),
         password: Yup.string()
           .required("Please choose a password.")
