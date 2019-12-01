@@ -13,10 +13,12 @@ export default () => {
       initialValues={{ username: "", password: "" }}
       validationSchema={Yup.object({
         username: Yup.string()
-          .matches(/^\w+$/, "Usernames can only consist of letters, numbers, and underscores.")
+          .matches(
+            /^\w+$/,
+            "Usernames can only consist of letters, numbers, and underscores."
+          )
           .required("Please choose a username."),
-        password: Yup.string()
-          .required("Please choose a password.")
+        password: Yup.string().required("Please choose a password.")
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -26,7 +28,12 @@ export default () => {
       }}
     >
       {formik => (
-        <Form noValidate onSubmit={formik.handleSubmit} className="mx-auto" style={{ width: "100%", maxWidth: "420px" }}>
+        <Form
+          noValidate
+          onSubmit={formik.handleSubmit}
+          className="mx-auto"
+          style={{ width: "100%", maxWidth: "420px" }}
+        >
           <Form.Group controlId="username">
             <Form.Label>Username</Form.Label>
             <InputGroup>
