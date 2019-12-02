@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import fetch from "isomorphic-unfetch";
+import { login } from "../utils/auth";
 
 export default () => {
   return (
@@ -20,11 +22,29 @@ export default () => {
           .required("Please choose a username."),
         password: Yup.string().required("Please choose a password.")
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 400);
+      onSubmit={async values => {
+        try {
+          const response = await fetch("/api/login", {
+            method: "POST",
+            headhers: { "Content-Type": "application/json" },
+            body: JSON.stringify(values)
+          });
+          if (response.status === 200) {
+            const { token } = await response.json();
+            login({ token });
+          } else {
+            console.log("Registration failed.");
+            // https://github.com/developit/unfetch#caveats
+            let err = new Error(response.statusText);
+            err.response = response;
+            throw err;
+          }
+        } catch (err) {
+          console.error(
+            "You have an error in your code or there are network issues.",
+            err
+          );
+        }
       }}
     >
       {formik => (
