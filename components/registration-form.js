@@ -24,7 +24,7 @@ export default () => {
       })}
       onSubmit={async values => {
         try {
-          const response = await fetch("/api/login", {
+          const response = await fetch("/api/register", {
             method: "POST",
             headhers: { "Content-Type": "application/json" },
             body: JSON.stringify(values)
