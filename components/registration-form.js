@@ -35,9 +35,9 @@ export default () => {
           } else {
             console.log("Registration failed.");
             // https://github.com/developit/unfetch#caveats
-            let err = new Error(response.statusText);
-            err.response = response;
-            throw err;
+            let error = new Error(response.statusText);
+            error.response = response;
+            throw error;
           }
         } catch (err) {
           console.error(
