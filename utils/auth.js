@@ -9,3 +9,12 @@ export const login = ({ token }, remember) => {
     : Cookies.set("token", token);
   Router.push("/dashboard");
 };
+
+export const logout = () => {
+  Cookies.remove("token");
+
+  // Log out from all windows
+  window.localStorage.setItem("logout", Date.now());
+
+  Router.push("/login");
+};
