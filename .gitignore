@@ -18,7 +18,6 @@
 # misc
 .DS_Store
 .env*
-next.config.js
 
 # debug
 npm-debug.log*
