@@ -32,6 +32,8 @@ export default () => {
           if (response.status === 200) {
             const { token } = await response.json();
             login({ token }, false);
+          } else if (response.status === 409) {
+            setFieldError("username", "That username is already taken.");
           } else {
             console.log("Registration failed.");
             // https://github.com/developit/unfetch#caveats

@@ -17,18 +17,23 @@ export default async (req, res) => {
     await client.connect();
     const col = client.db(dbName).collection(colName);
 
-    const passwordHash = await bcrypt.hash(password, saltRounds);
+    const usernameConflict = await col.findOne({ username: username });
+    if (usernameConflict) {
+      res.status(409).json({ message: "Username already taken" });
+    } else {
+      const passwordHash = await bcrypt.hash(password, saltRounds);
 
-    const result = await col.insertOne({
-      username: username,
-      password_hash: passwordHash,
-      joined_on: new Date(),
-      display_name: "@" + username,
-      plan: "free"
-    });
+      const result = await col.insertOne({
+        username: username,
+        password_hash: passwordHash,
+        joined_on: new Date(),
+        display_name: "@" + username,
+        plan: "free"
+      });
 
-    const idHash = await bcrypt.hash(result.insertedId.toString(), saltRounds);
-    res.status(200).json({ token: idHash });
+      const idHash = await bcrypt.hash(result.insertedId.toString(), saltRounds);
+      res.status(200).json({ token: idHash });
+    }
   } catch (err) {
     const { response } = err;
     response
