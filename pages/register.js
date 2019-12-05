@@ -5,12 +5,12 @@ import "../styles.scss";
 
 import PageLayout from "../components/page-layout";
 import Container from "react-bootstrap/Container";
-import LoginForm from "../components/login-form";
+import RegistrationForm from "../components/registration-form";
 
 export default () => (  
   <PageLayout title="Login">
     <Container>
-      <LoginForm />
+      <RegistrationForm />
     </Container>
   </PageLayout>
 );
