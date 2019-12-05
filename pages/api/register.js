@@ -8,8 +8,7 @@ const dbName = "stars-align";
 const colName = "users";
 
 export default async (req, res) => {
-  const { username, password } = req.body;
-  const passwordHash = await bcrypt.hash(password, saltRounds);
+  const { username, password } = JSON.parse(req.body);
 
   const client = new MongoClient(process.env.DB, {
     useUnifiedTopology: true
@@ -17,6 +16,8 @@ export default async (req, res) => {
   try {
     await client.connect();
     const col = client.db(dbName).collection(colName);
+
+    const passwordHash = await bcrypt.hash(password, saltRounds);
 
     const result = await col.insertOne({
       username: username,
@@ -26,7 +27,7 @@ export default async (req, res) => {
       plan: "free"
     });
 
-    const idHash = await bcrypt.hash(result.insertedId, saltRounds);
+    const idHash = await bcrypt.hash(result.insertedId.toString(), saltRounds);
     res.status(200).json({ token: idHash });
   } catch (err) {
     const { response } = err;

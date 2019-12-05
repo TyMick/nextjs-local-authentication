@@ -8,8 +8,7 @@ const dbName = "stars-align";
 const colName = "users";
 
 export default async (req, res) => {
-  let { usernameOrEmail } = req.body;
-  const { password } = req.body;
+  let { usernameOrEmail, password } = JSON.parse(req.body);
   if (usernameOrEmail.startsWith("@")) {
     usernameOrEmail = usernameOrEmail.slice(1);
   }
@@ -32,7 +31,7 @@ export default async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, user.passwordHash);
 
       if (passwordMatch) {
-        const idHash = await bcrypt.hash(user._id, saltRounds);
+        const idHash = await bcrypt.hash(user._id.toString(), saltRounds);
         res.status(200).json({ token: idHash });
       } else {
         res.status(401).json({ message: "Incorrect password" });
