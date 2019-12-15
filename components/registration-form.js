@@ -12,7 +12,7 @@ import { login } from "../utils/auth";
 export default () => {
   return (
     <Formik
-      initialValues={{ username: "", password: "" }}
+      initialValues={{ username: "", password: "", retypePassword: "" }}
       validationSchema={Yup.object({
         username: Yup.string()
           .matches(
@@ -20,7 +20,8 @@ export default () => {
             "Usernames can only consist of letters, numbers, and underscores."
           )
           .required("Please choose a username."),
-        password: Yup.string().required("Please choose a password.")
+        password: Yup.string().required("Please choose a password."),
+        retypePassword: Yup.string().required("Just to make sure.")
       })}
       onSubmit={async values => {
         try {
