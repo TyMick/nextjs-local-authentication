@@ -12,7 +12,7 @@ import { login } from "../utils/auth";
 export default () => {
   return (
     <Formik
-      initialValues={{ username: "", password: "" }}
+      initialValues={{ username: "", password: "", retypePassword: "" }}
       validationSchema={Yup.object({
         username: Yup.string()
           .matches(
@@ -20,7 +20,8 @@ export default () => {
             "Usernames can only consist of letters, numbers, and underscores."
           )
           .required("Please choose a username."),
-        password: Yup.string().required("Please choose a password.")
+        password: Yup.string().required("Please choose a password."),
+        retypePassword: Yup.string().required("Just to make sure.")
       })}
       onSubmit={async values => {
         try {
@@ -32,6 +33,8 @@ export default () => {
           if (response.status === 200) {
             const { token } = await response.json();
             login({ token }, false);
+          } else if (response.status === 409) {
+            setFieldError("username", "That username is already taken.");
           } else {
             console.log("Registration failed.");
             // https://github.com/developit/unfetch#caveats
@@ -56,6 +59,7 @@ export default () => {
         >
           <Form.Group controlId="username">
             <Form.Label>Username</Form.Label>
+            <Form.Text className="text-muted">You can change this later.</Form.Text>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="ampersand">@</InputGroup.Text>
