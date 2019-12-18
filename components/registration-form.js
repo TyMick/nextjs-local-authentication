@@ -24,29 +24,33 @@ export default () => {
         retypePassword: Yup.string().required("Just to make sure.")
       })}
       onSubmit={async values => {
-        try {
-          const response = await fetch("/api/register", {
-            method: "POST",
-            headhers: { "Content-Type": "application/json" },
-            body: JSON.stringify(values)
-          });
-          if (response.status === 200) {
-            const { token } = await response.json();
-            login({ token }, false);
-          } else if (response.status === 409) {
-            setFieldError("username", "That username is already taken.");
-          } else {
-            console.log("Registration failed.");
-            // https://github.com/developit/unfetch#caveats
-            let error = new Error(response.statusText);
-            error.response = response;
-            throw error;
+        if (values.password != values.retypePassword) {
+          setFieldError("retypePassword", "Oops, your passwords don't match!");
+        } else {
+          try {
+            const response = await fetch("/api/register", {
+              method: "POST",
+              headhers: { "Content-Type": "application/json" },
+              body: JSON.stringify(values)
+            });
+            if (response.status === 200) {
+              const { token } = await response.json();
+              login({ token }, false);
+            } else if (response.status === 409) {
+              setFieldError("username", "That username is already taken.");
+            } else {
+              console.log("Registration failed.");
+              // https://github.com/developit/unfetch#caveats
+              let error = new Error(response.statusText);
+              error.response = response;
+              throw error;
+            }
+          } catch (err) {
+            console.error(
+              "You have an error in your code or there are network issues.",
+              err
+            );
           }
-        } catch (err) {
-          console.error(
-            "You have an error in your code or there are network issues.",
-            err
-          );
         }
       }}
     >
@@ -90,6 +94,24 @@ export default () => {
               onBlur={formik.handleBlur}
               value={formik.values.password}
               isInvalid={formik.touched.password && !!formik.errors.password}
+            />
+            <Form.Control.Feedback type="invalid">
+              {formik.errors.password}
+            </Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group controlId="retype-password">
+            <Form.Label>Retype password</Form.Label>
+            <Form.Control
+              name="retype-password"
+              type="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.retypePassword}
+              isInvalid={
+                formik.touched.retypePassword &&
+                formik.values.retypePassword != formik.values.password
+              }
             />
             <Form.Control.Feedback type="invalid">
               {formik.errors.password}
