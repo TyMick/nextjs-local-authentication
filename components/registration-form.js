@@ -59,7 +59,9 @@ export default () => {
         >
           <Form.Group controlId="username">
             <Form.Label>Username</Form.Label>
-            <Form.Text className="text-muted">You can change this later.</Form.Text>
+            <Form.Text className="text-muted">
+              You can change this later.
+            </Form.Text>
             <InputGroup>
               <InputGroup.Prepend>
                 <InputGroup.Text id="ampersand">@</InputGroup.Text>
