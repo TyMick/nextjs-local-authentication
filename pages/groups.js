@@ -1,14 +1,14 @@
 "use strict";
 
 import React from "react";
-import PageLayout from "../components/page-layout";
+import Layout from "../components/layout";
 import "../styles.scss";
 import { withAuthSync } from "../utils/auth";
 
 const Groups = () => (
-  <PageLayout title="Groups">
+  <Layout title="Groups">
     
-  </PageLayout>
+  </Layout>
 );
 
 export default withAuthSync(Groups);

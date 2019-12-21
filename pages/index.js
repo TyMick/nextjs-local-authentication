@@ -1,11 +1,11 @@
 "use strict";
 
 import React from "react";
-import PageLayout from "../components/page-layout";
+import Layout from "../components/layout";
 import "../styles.scss";
 
 export default () => (
-  <PageLayout title="">
+  <Layout title="">
     
-  </PageLayout>
+  </Layout>
 );

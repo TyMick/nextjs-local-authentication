@@ -3,14 +3,14 @@
 import React from "react";
 import "../styles.scss";
 
-import PageLayout from "../components/page-layout";
+import Layout from "../components/layout";
 import Container from "react-bootstrap/Container";
 import LoginForm from "../components/login-form";
 
 export default () => (  
-  <PageLayout title="Login">
+  <Layout title="Login">
     <Container>
       <LoginForm />
     </Container>
-  </PageLayout>
+  </Layout>
 );
