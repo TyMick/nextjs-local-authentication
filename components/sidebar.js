@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import { withRouter } from "next/router";
 import Link from "next/link";
 import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
@@ -16,7 +17,7 @@ class Sidebar extends React.Component {
   }
   // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
-    return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
+    return this.props.router.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
   componentDidMount() {
     if (navigator.platform.indexOf("Win") > -1) {
@@ -73,4 +74,4 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);

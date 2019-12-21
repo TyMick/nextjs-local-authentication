@@ -1,6 +1,7 @@
 "use strict";
 
 import React from "react";
+import { withRouter } from "next/router";
 import Link from "next/link";
 import {
   Collapse,
@@ -88,10 +89,10 @@ class Header extends React.Component {
   componentDidMount() {
     window.addEventListener("resize", this.updateColor.bind(this));
   }
-  componentDidUpdate(e) {
+  componentDidUpdate(prevProps) {
     if (
       window.innerWidth < 993 &&
-      e.history.location.pathname !== e.location.pathname &&
+      prevProps.router.pathname !== this.props.router.pathname &&
       document.documentElement.className.indexOf("nav-open") !== -1
     ) {
       document.documentElement.classList.toggle("nav-open");
@@ -105,8 +106,9 @@ class Header extends React.Component {
         color={this.state.color}
         expand="lg"
         className={
-          "navbar-absolute fixed-top " +
-          this.state.color === "transparent" ? "navbar-transparent" : ""
+          "navbar-absolute fixed-top " + this.state.color === "transparent"
+            ? "navbar-transparent"
+            : ""
         }
       >
         <Container fluid>
@@ -140,14 +142,51 @@ class Header extends React.Component {
                 <Input placeholder="Search..." />
                 <InputGroupAddon addonType="append">
                   <InputGroupText>
-                    
+                    <i className="nc-icon nc-zoom-split" />
                   </InputGroupText>
                 </InputGroupAddon>
               </InputGroup>
             </form>
+            <Nav navbar>
+              <NavItem>
+                <Link href="#" className="nav-link btn-magnify">
+                  <a>
+                    <i className="nc-icon nc-layout-11" />
+                    <span className="d-lg-none d-md-block">Stats</span>
+                  </a>
+                </Link>
+              </NavItem>
+              <Dropdown
+                nav
+                isOpen={this.state.dropdownOpen}
+                toggle={e => this.dropdownToggle(e)}
+              >
+                <DropdownToggle caret nav>
+                  <i className="nc-icon nc-bell-55" />
+                  <p>
+                    <span className="d-lg-none d-md-block">Some Actions</span>
+                  </p>
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem tag="a">Action</DropdownItem>
+                  <DropdownItem tag="a">Another Action</DropdownItem>
+                  <DropdownItem tag="a">Something else here</DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <NavItem>
+                <Link href="#" className="nav-link btn-rotate">
+                  <a>
+                    <i className="nc-icon nc-settings-gear-65" />
+                    <span className="d-lg-none d-md-block">Account</span>
+                  </a>
+                </Link>
+              </NavItem>
+            </Nav>
           </Collapse>
         </Container>
       </Navbar>
-    )
+    );
   }
 }
+
+export default withRouter(Header);
