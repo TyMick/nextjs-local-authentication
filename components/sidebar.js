@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
       ps.destroy();
     }
   }
-  
+
   render() {
     return (
       <div
@@ -40,18 +40,12 @@ class Sidebar extends React.Component {
         data-active-color={this.props.activeColor}
       >
         <div className="logo">
-          <a
-            href="#"
-            className="simple-text logo-mini"
-          >
+          <a href="#" className="simple-text logo-mini">
             <div className="logo-img">
               <img src="/apple-touch-icon.png" alt="Stars Align logo" />
             </div>
           </a>
-          <a
-            href="#"
-            className="simple-text logo-normal"
-          >
+          <a href="#" className="simple-text logo-normal">
             Stars Align
           </a>
         </div>
@@ -59,15 +53,15 @@ class Sidebar extends React.Component {
           <Nav>
             {this.props.routes.map((route, key) => {
               return (
-                <li
-                  className={this.activeRoute(route.path)}
-                  key={key}
-                >
+                <li className={this.activeRoute(route.path)} key={key}>
                   <Link
                     href={route.path}
                     className={"nav-link " + this.activeRoute(route.path)}
                   >
-                    <a><i className={prop.icon} />{prop.name}</a>
+                    <a>
+                      <i className={prop.icon} />
+                      {prop.name}
+                    </a>
                   </Link>
                 </li>
               );
