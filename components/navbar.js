@@ -33,7 +33,7 @@ class Header extends React.Component {
     };
     this.toggle = this.toggle.bind(this);
     this.dropdownToggle = this.dropdownToggle.bind(this);
-    this.sidebarToggle = this.sidebarToggle.bind(this);
+    this.sidebarToggle = React.createRef();
   }
 
   toggle() {
@@ -60,7 +60,7 @@ class Header extends React.Component {
   getPageName() {
     let pageName = "Default";
     routes.map((route, key) => {
-      if (window.location.href.indexOf(route.path) !== -1) {
+      if (this.props.router.route.indexOf(route.path) !== -1) {
         pageName = route.name;
       }
       return null;
@@ -149,8 +149,8 @@ class Header extends React.Component {
             </form>
             <Nav navbar>
               <NavItem>
-                <Link href="#" className="nav-link btn-magnify">
-                  <a>
+                <Link href="#">
+                  <a className="nav-link btn-magnify">
                     <i className="nc-icon nc-layout-11" />
                     <span className="d-lg-none d-md-block">Stats</span>
                   </a>
@@ -174,8 +174,8 @@ class Header extends React.Component {
                 </DropdownMenu>
               </Dropdown>
               <NavItem>
-                <Link href="#" className="nav-link btn-rotate">
-                  <a>
+                <Link href="#">
+                  <a className="nav-link btn-rotate">
                     <i className="nc-icon nc-settings-gear-65" />
                     <span className="d-lg-none d-md-block">Account</span>
                   </a>

@@ -5,7 +5,7 @@ import Layout from "../components/layout";
 import "../styles.scss";
 
 export default () => (
-  <Layout title="">
+  <Layout pageTitle="">
     
   </Layout>
 );

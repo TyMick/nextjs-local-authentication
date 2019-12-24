@@ -55,13 +55,10 @@ class Sidebar extends React.Component {
             {this.props.routes.map((route, key) => {
               return (
                 <li className={this.activeRoute(route.path)} key={key}>
-                  <Link
-                    href={route.path}
-                    className={"nav-link " + this.activeRoute(route.path)}
-                  >
-                    <a>
-                      <i className={prop.icon} />
-                      {prop.name}
+                  <Link href={route.path}>
+                    <a className={"nav-link " + this.activeRoute(route.path)}>
+                      <i className={route.icon} />
+                      {route.name}
                     </a>
                   </Link>
                 </li>
