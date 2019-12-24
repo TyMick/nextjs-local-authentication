@@ -1,3 +1,5 @@
 $enable-responsive-font-sizes: true;
-
 @import "~bootstrap/scss/bootstrap.scss";
+
+@import "vendor/creative-tim/scss/paper-dashboard.scss?v=1.1.0";
+@import "~perfect-scrollbar/css/perfect-scrollbar.css";
