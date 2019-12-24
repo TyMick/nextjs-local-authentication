@@ -64,10 +64,12 @@ function Layout(WrappedComponent) {
           <div className="main-panel" ref={this.mainPanel}>
             <Navbar {...this.props} />
             <WrappedComponent />
-            
+            <Footer fluid />
           </div>
         </div>
       );
     }
   }
 }
+
+export default Layout;
