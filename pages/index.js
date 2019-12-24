@@ -1,11 +1,11 @@
 "use strict";
 
 import React from "react";
-import withLayout from "../components/with-layout";
+import Layout from "../components/layout";
 import "../styles.scss";
 
 export default () => (
-  <withLayout title="">
+  <Layout title="">
     
-  </withLayout>
+  </Layout>
 );
