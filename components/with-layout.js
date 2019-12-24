@@ -12,7 +12,7 @@ import routes from "../utils/routes";
 
 let ps;
 
-function Layout(WrappedComponent) {
+function withLayout(WrappedComponent) {
   return class extends React.Component {
     constructor(props) {
       super(props);
@@ -72,4 +72,4 @@ function Layout(WrappedComponent) {
   }
 }
 
-export default Layout;
+export default withLayout;
