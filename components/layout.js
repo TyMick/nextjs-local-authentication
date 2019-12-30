@@ -69,7 +69,7 @@ class Layout extends React.Component {
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel" ref={this.mainPanel}>
+        <div className="main-panel d-flex flex-column min-vh-100" ref={this.mainPanel}>
           <Navbar {...this.props} />
           {this.props.children}
           <Footer fluid />
