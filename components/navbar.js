@@ -106,9 +106,8 @@ class Header extends React.Component {
         color={this.state.color}
         expand="lg"
         className={
-          "navbar-absolute fixed-top " + this.state.color === "transparent"
-            ? "navbar-transparent"
-            : ""
+          "navbar-absolute fixed-top " +
+          (this.state.color === "transparent" ? "navbar-transparent" : "")
         }
       >
         <Container fluid>
