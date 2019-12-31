@@ -5,7 +5,7 @@ import React from "react";
 import PerfectScrollbar from "perfect-scrollbar";
 
 import Head from "next/head";
-import { Card } from "reactstrap";
+import { Card, CardHeader, CardTitle, CardBody } from "reactstrap";
 import Footer from "./footer";
 
 let ps;
@@ -61,9 +61,14 @@ class LoginLayout extends React.Component {
         </Head>
         
         <div className="bg-dark text-light d-flex flex-column min-vh-100" ref={this.mainPanel}>
-          <div className="h1 py-5 mx-auto">&#x1F320; Stars Align</div>
-          <Card className="flex-grow-0 p-3 mx-auto">
-            {this.props.children}
+          <h1 className="py-5 mx-auto">&#x1F320; Stars Align</h1>
+          <Card className="flex-grow-0 mx-auto card-user">
+            <CardHeader>
+              <CardTitle tag="h5">{this.props.pageTitle}</CardTitle>
+            </CardHeader>
+            <CardBody>
+              {this.props.children}
+            </CardBody>
           </Card>
           <Footer fluid />
         </div>
