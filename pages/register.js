@@ -11,7 +11,8 @@ import {
   InputGroupText,
   Input,
   FormFeedback,
-  Button
+  Button,
+  Row
 } from "reactstrap";
 import LoginLayout from "../components/login-layout";
 import { Formik } from "formik";
@@ -127,9 +128,13 @@ export default () => (
             </FormFeedback>
           </FormGroup>
 
-          <Button color="primary" type="submit">
-            Register
-          </Button>
+          <Row>
+            <div className="update ml-auto mr-auto">
+              <Button className="btn-round" color="primary" type="submit">
+                Register
+              </Button>
+            </div>
+          </Row>
         </Form>
       )}
     </Formik>
