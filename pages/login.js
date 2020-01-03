@@ -94,15 +94,17 @@ export default () => (
             </FormFeedback>
           </FormGroup>
 
-          <FormGroup>
-            <Input
-              name="remember"
-              type="checkbox"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.remember}
-            />
-            <Label for="remember" className="text-dark">Remember me</Label>
+          <FormGroup check>
+            <Label check className="text-dark">
+              <Input
+                name="remember"
+                type="checkbox"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.remember}
+              />{" "}
+              Remember me
+            </Label>
           </FormGroup>
 
           <Row>

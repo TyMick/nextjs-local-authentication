@@ -20,3 +20,12 @@ $enable-responsive-font-sizes: true;
 .input-group .form-control:not(:first-child):not(:last-child).is-invalid, .input-group-btn:not(:first-child):not(:last-child).is-invalid {
   border-left: 1px solid #dc3545;
 }
+
+// Fix .form-check-input bugs
+.form-check input[type="checkbox"], .form-check-radio input[type="radio"] {
+  opacity: 1;
+  visibility: visible;
+}
+.form-check .form-check-label {
+  padding-left: 20px;
+}
