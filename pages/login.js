@@ -63,7 +63,7 @@ export default () => (
           style={{ width: "420px" }}
         >
           <FormGroup>
-            <Label for="username" className="text-dark">Username</Label>
+            <Label for="username" className="text-dark">Username or email</Label>
             <Input
               name="username"
               id="username"
