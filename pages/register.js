@@ -5,7 +5,6 @@ import {
   Form,
   FormGroup,
   Label,
-  FormText,
   InputGroup,
   InputGroupAddon,
   InputGroupText,
