@@ -10,6 +10,7 @@ import {
   Button,
   Row
 } from "reactstrap";
+import Link from "next/link";
 import LoginLayout from "../components/login-layout";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -112,6 +113,12 @@ export default () => (
               <Button className="btn-round" color="primary" type="submit">
                 Log in
               </Button>
+            </div>
+          </Row>
+
+          <Row>
+            <div className="update ml-auto mr-auto mb-2">
+              Don't have an account yet? <Link href="/register">Register</Link>.
             </div>
           </Row>
         </Form>
