@@ -81,6 +81,7 @@ export default () => (
               </InputGroupAddon>
               <Input
                 name="username"
+                id="username"
                 aria-describedby="ampersand"
                 type="text"
                 onChange={formik.handleChange}
@@ -98,6 +99,7 @@ export default () => (
             <Label for="password" className="text-dark">Password</Label>
             <Input
               name="password"
+              id="password"
               type="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -113,6 +115,7 @@ export default () => (
             <Label for="retypePassword" className="text-dark">Retype password</Label>
             <Input
               name="retypePassword"
+              id="retypePassword"
               type="password"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
