@@ -5,9 +5,6 @@ import {
   Form,
   FormGroup,
   Label,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
   Input,
   FormFeedback,
   Button,
@@ -103,11 +100,7 @@ export default () => (
               type="checkbox"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.retypePassword}
-              invalid={
-                formik.touched.retypePassword &&
-                formik.values.retypePassword != formik.values.password
-              }
+              value={formik.values.remember}
             />
             <Label for="remember" className="text-dark">Remember me</Label>
           </FormGroup>
@@ -115,7 +108,7 @@ export default () => (
           <Row>
             <div className="update ml-auto mr-auto">
               <Button className="btn-round" color="primary" type="submit">
-                Register
+                Log in
               </Button>
             </div>
           </Row>
