@@ -4,7 +4,7 @@ export default [
   {
     path: "/dashboard",
     name: "Dashboard",
-    icon: ""
+    icon: "nc-icon nc-bank"
   },
   {
     path: "/events",
@@ -24,6 +24,6 @@ export default [
   {
     path: "/settings",
     name: "Settings",
-    icon: ""
+    icon: "nc-icon nc-single-02"
   }
 ];
