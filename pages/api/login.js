@@ -28,7 +28,7 @@ export default async (req, res) => {
     if (!user) {
       res.status(401).json({ message: "No user found" });
     } else {
-      const passwordMatch = await bcrypt.compare(password, user.passwordHash);
+      const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
       if (passwordMatch) {
         const idHash = await bcrypt.hash(user._id.toString(), saltRounds);

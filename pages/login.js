@@ -22,9 +22,9 @@ import "../styles.scss";
 export default () => (
   <LoginLayout pageTitle="Login">
     <Formik
-      initialValues={{ username: "", password: "", remember: false }}
+      initialValues={{ usernameOrEmail: "", password: "", remember: false }}
       validationSchema={Yup.object({
-        username: Yup.string().required(),
+        usernameOrEmail: Yup.string().required(),
         password: Yup.string().required(),
         remember: Yup.boolean()
       })}
@@ -34,7 +34,7 @@ export default () => (
             method: "POST",
             headhers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              username: values.username,
+              usernameOrEmail: values.usernameOrEmail,
               password: values.password
             })
           });
@@ -64,18 +64,18 @@ export default () => (
           style={{ width: "420px" }}
         >
           <FormGroup>
-            <Label for="username" className="text-dark">Username or email</Label>
+            <Label for="usernameOrEmail" className="text-dark">Username or email</Label>
             <Input
-              name="username"
-              id="username"
+              name="usernameOrEmail"
+              id="usernameOrEmail"
               type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              value={formik.values.username}
-              invalid={formik.touched.username && !!formik.errors.username}
+              value={formik.values.usernameOrEmail}
+              invalid={formik.touched.usernameOrEmail && !!formik.errors.usernameOrEmail}
             />
             <FormFeedback>
-              {formik.errors.username}
+              {formik.errors.usernameOrEmail}
             </FormFeedback>
           </FormGroup>
 
