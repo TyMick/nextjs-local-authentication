@@ -141,7 +141,7 @@ export default () => (
 
           <Row>
             <div className="update ml-auto mr-auto mb-2">
-              Already have an account? <Link href="/login">Log in</Link>.
+              Already have an account? <Link href="/login"><a>Log in</a></Link>.
             </div>
           </Row>
         </Form>
