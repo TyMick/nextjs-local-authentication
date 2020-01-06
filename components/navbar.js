@@ -22,6 +22,7 @@ import {
 } from "reactstrap";
 
 import routes from "../utils/routes";
+import { logout } from "../utils/auth";
 
 class Header extends React.Component {
   constructor(props) {
@@ -150,8 +151,10 @@ class Header extends React.Component {
               <NavItem>
                 <Link href="#">
                   <a className="nav-link btn-magnify">
-                    <i className="nc-icon nc-layout-11" />
-                    <span className="d-lg-none d-md-block">Stats</span>
+                    <i className="nc-icon nc-bell-55" />
+                    <p>
+                      <span className="d-lg-none d-md-block">Notifications</span>
+                    </p>
                   </a>
                 </Link>
               </NavItem>
@@ -161,25 +164,20 @@ class Header extends React.Component {
                 toggle={e => this.dropdownToggle(e)}
               >
                 <DropdownToggle caret nav>
-                  <i className="nc-icon nc-bell-55" />
+                  <i className="nc-icon nc-circle-10" />
                   <p>
-                    <span className="d-lg-none d-md-block">Some Actions</span>
+                    <span className="d-lg-none d-md-block">Profile</span>
                   </p>
                 </DropdownToggle>
                 <DropdownMenu right>
-                  <DropdownItem tag="a">Action</DropdownItem>
-                  <DropdownItem tag="a">Another Action</DropdownItem>
-                  <DropdownItem tag="a">Something else here</DropdownItem>
+                  <Link href="/settings">
+                    <DropdownItem tag="a" style={{cursor: "pointer"}}>Edit profile</DropdownItem>
+                  </Link>
+                  <DropdownItem tag="a" onClick={logout} style={{cursor: "pointer"}}>
+                    Log out
+                  </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <NavItem>
-                <Link href="#">
-                  <a className="nav-link btn-rotate">
-                    <i className="nc-icon nc-settings-gear-65" />
-                    <span className="d-lg-none d-md-block">Account</span>
-                  </a>
-                </Link>
-              </NavItem>
             </Nav>
           </Collapse>
         </Container>
