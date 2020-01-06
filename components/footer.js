@@ -9,7 +9,9 @@ class Footer extends React.Component {
   render() {
     return (
       <footer
-        className={"mt-auto footer" + (this.props.default ? " footer-default" : "")}
+        className={
+          "mt-auto footer" + (this.props.default ? " footer-default" : "")
+        }
       >
         <Container fluid={this.props.fluid ? true : false}>
           <Row>

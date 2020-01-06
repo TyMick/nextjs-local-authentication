@@ -31,7 +31,10 @@ export default async (req, res) => {
         plan: "free"
       });
 
-      const idHash = await bcrypt.hash(result.insertedId.toString(), saltRounds);
+      const idHash = await bcrypt.hash(
+        result.insertedId.toString(),
+        saltRounds
+      );
       res.status(200).json({ token: idHash });
     }
   } catch (err) {

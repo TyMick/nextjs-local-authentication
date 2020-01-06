@@ -75,7 +75,9 @@ export default () => (
           style={{ width: "420px" }}
         >
           <FormGroup>
-            <Label for="username" className="text-dark">Username</Label>
+            <Label for="username" className="text-dark">
+              Username
+            </Label>
             <InputGroup>
               <InputGroupAddon addonType="prepend">
                 <InputGroupText id="ampersand">@</InputGroupText>
@@ -90,14 +92,14 @@ export default () => (
                 value={formik.values.username}
                 invalid={formik.touched.username && !!formik.errors.username}
               />
-              <FormFeedback>
-                {formik.errors.username}
-              </FormFeedback>
+              <FormFeedback>{formik.errors.username}</FormFeedback>
             </InputGroup>
           </FormGroup>
 
           <FormGroup>
-            <Label for="password" className="text-dark">Password</Label>
+            <Label for="password" className="text-dark">
+              Password
+            </Label>
             <Input
               name="password"
               id="password"
@@ -107,13 +109,13 @@ export default () => (
               value={formik.values.password}
               invalid={formik.touched.password && !!formik.errors.password}
             />
-            <FormFeedback>
-              {formik.errors.password}
-            </FormFeedback>
+            <FormFeedback>{formik.errors.password}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label for="retypePassword" className="text-dark">Retype password</Label>
+            <Label for="retypePassword" className="text-dark">
+              Retype password
+            </Label>
             <Input
               name="retypePassword"
               id="retypePassword"
@@ -127,7 +129,8 @@ export default () => (
               }
             />
             <FormFeedback>
-              {formik.errors.retypePassword || "Oops, your passwords don't match!"}
+              {formik.errors.retypePassword ||
+                "Oops, your passwords don't match!"}
             </FormFeedback>
           </FormGroup>
 
@@ -141,7 +144,11 @@ export default () => (
 
           <Row>
             <div className="update ml-auto mr-auto mb-2">
-              Already have an account? <Link href="/login"><a>Log in</a></Link>.
+              Already have an account?{" "}
+              <Link href="/login">
+                <a>Log in</a>
+              </Link>
+              .
             </div>
           </Row>
         </Form>

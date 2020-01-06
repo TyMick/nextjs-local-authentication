@@ -64,7 +64,9 @@ export default () => (
           style={{ width: "420px" }}
         >
           <FormGroup>
-            <Label for="usernameOrEmail" className="text-dark">Username or email</Label>
+            <Label for="usernameOrEmail" className="text-dark">
+              Username or email
+            </Label>
             <Input
               name="usernameOrEmail"
               id="usernameOrEmail"
@@ -72,15 +74,18 @@ export default () => (
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.usernameOrEmail}
-              invalid={formik.touched.usernameOrEmail && !!formik.errors.usernameOrEmail}
+              invalid={
+                formik.touched.usernameOrEmail &&
+                !!formik.errors.usernameOrEmail
+              }
             />
-            <FormFeedback>
-              {formik.errors.usernameOrEmail}
-            </FormFeedback>
+            <FormFeedback>{formik.errors.usernameOrEmail}</FormFeedback>
           </FormGroup>
 
           <FormGroup>
-            <Label for="password" className="text-dark">Password</Label>
+            <Label for="password" className="text-dark">
+              Password
+            </Label>
             <Input
               name="password"
               id="password"
@@ -90,9 +95,7 @@ export default () => (
               value={formik.values.password}
               invalid={formik.touched.password && !!formik.errors.password}
             />
-            <FormFeedback>
-              {formik.errors.password}
-            </FormFeedback>
+            <FormFeedback>{formik.errors.password}</FormFeedback>
           </FormGroup>
 
           <FormGroup check>
@@ -118,7 +121,11 @@ export default () => (
 
           <Row>
             <div className="update ml-auto mr-auto mb-2">
-              Don't have an account yet? <Link href="/register"><a>Register</a></Link>.
+              Don't have an account yet?{" "}
+              <Link href="/register">
+                <a>Register</a>
+              </Link>
+              .
             </div>
           </Row>
         </Form>

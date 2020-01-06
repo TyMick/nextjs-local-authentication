@@ -153,7 +153,9 @@ class Header extends React.Component {
                   <a className="nav-link btn-magnify">
                     <i className="nc-icon nc-bell-55" />
                     <p>
-                      <span className="d-lg-none d-md-block">Notifications</span>
+                      <span className="d-lg-none d-md-block">
+                        Notifications
+                      </span>
                     </p>
                   </a>
                 </Link>

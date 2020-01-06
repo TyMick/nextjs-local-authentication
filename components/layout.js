@@ -48,10 +48,27 @@ class Layout extends React.Component {
     return (
       <div className="wrapper">
         <Head>
-          <title>{"Stars Align" + (this.props.pageTitle && " – " + this.props.pageTitle)}</title>
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <title>
+            {"Stars Align" +
+              (this.props.pageTitle && " – " + this.props.pageTitle)}
+          </title>
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
           <link rel="manifest" href="/site.webmanifest" />
           <link
             href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -69,7 +86,10 @@ class Layout extends React.Component {
           bgColor={this.state.backgroundColor}
           activeColor={this.state.activeColor}
         />
-        <div className="main-panel d-flex flex-column min-vh-100" ref={this.mainPanel}>
+        <div
+          className="main-panel d-flex flex-column min-vh-100"
+          ref={this.mainPanel}
+        >
           <Navbar {...this.props} />
           {this.props.children}
           <Footer fluid />
