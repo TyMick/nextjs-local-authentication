@@ -171,9 +171,9 @@ class Header extends React.Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                   <Link href="/settings">
-                    <DropdownItem tag="a" style={{cursor: "pointer"}}>Edit profile</DropdownItem>
+                    <DropdownItem tag="a">Edit profile</DropdownItem>
                   </Link>
-                  <DropdownItem tag="a" onClick={logout} style={{cursor: "pointer"}}>
+                  <DropdownItem tag="a" onClick={logout}>
                     Log out
                   </DropdownItem>
                 </DropdownMenu>

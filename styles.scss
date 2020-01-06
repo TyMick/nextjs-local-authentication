@@ -29,3 +29,8 @@ $enable-responsive-font-sizes: true;
 .form-check .form-check-label {
   padding-left: 20px;
 }
+
+// Fix pointer on a.dropdown-item
+a.dropdown-item {
+  cursor: pointer;
+}
