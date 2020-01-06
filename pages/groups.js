@@ -6,7 +6,7 @@ import "../styles.scss";
 import { withAuthSync } from "../utils/auth";
 
 const Groups = () => (
-  <Layout title="Groups">
+  <Layout pageTitle="Groups">
     
   </Layout>
 );
