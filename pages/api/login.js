@@ -8,10 +8,13 @@ const colName = "users";
 
 export default async (req, res) => {
   let { usernameOrEmail, password } = JSON.parse(req.body);
+
+  // Slice off any user-entered starting `@`
   if (usernameOrEmail.startsWith("@")) {
     usernameOrEmail = usernameOrEmail.slice(1);
   }
 
+  // Connect to database
   const client = new MongoClient(process.env.DB, {
     useUnifiedTopology: true
   });
@@ -19,17 +22,22 @@ export default async (req, res) => {
     await client.connect();
     const col = client.db(dbName).collection(colName);
 
+    // Try to find username
     let user = await col.findOne({ username: usernameOrEmail });
     if (!user) {
+      // Try to find email
       user = await col.findOne({ email: usernameOrEmail });
     }
 
+    // If no username or email, user doesn't exist
     if (!user) {
       res.status(401).json({ message: "No user found" });
     } else {
+      // Compare user-entered password to stored hash
       const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
       if (passwordMatch) {
+        // Send all-clear with _id as token
         res.status(200).json({ token: user._id.toString() });
       } else {
         res.status(401).json({ message: "Incorrect password" });
@@ -42,5 +50,6 @@ export default async (req, res) => {
       : res.status(500).json({ message: err.message });
   }
 
+  // Disconnect from database
   client.close();
 };
