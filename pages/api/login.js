@@ -3,7 +3,6 @@
 import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 
-const saltRounds = 12;
 const dbName = "stars-align";
 const colName = "users";
 
@@ -31,8 +30,7 @@ export default async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
       if (passwordMatch) {
-        const idHash = await bcrypt.hash(user._id.toString(), saltRounds);
-        res.status(200).json({ token: idHash });
+        res.status(200).json({ token: user._id.toString() });
       } else {
         res.status(401).json({ message: "Incorrect password" });
       }
