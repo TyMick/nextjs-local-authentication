@@ -1,31 +1,14 @@
 "use strict";
 
-import React, { useState } from "react";
-import { Container, Card, CardTitle, CardHeader, CardBody, Form } from "reactstrap";
-
+import React from "react";
 import Layout from "../components/layout";
 import "../styles.scss";
 import { withAuthSync } from "../utils/auth";
 
-function Settings() {
-  const [loading, setLoading] = useState(false);
-
-  return (
-    <Layout pageTitle="Settings">
-      <Container>
-        <Card className="card-user">
-          <CardHeader>
-            <CardTitle tag="h5">Edit profile</CardTitle>
-          </CardHeader>
-          <CardBody>
-            <Form>
-
-            </Form>
-          </CardBody>
-        </Card>
-      </Container>
-    </Layout>
-  );
-}
+const Settings = () => (
+  <Layout pageTitle="Settings">
+    
+  </Layout>
+);
 
 export default withAuthSync(Settings);
