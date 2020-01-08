@@ -91,12 +91,12 @@ export default function Register() {
               </Label>
               <InputGroup>
                 <InputGroupAddon addonType="prepend">
-                  <InputGroupText id="ampersand">@</InputGroupText>
+                  <InputGroupText id="at-sign">@</InputGroupText>
                 </InputGroupAddon>
                 <Input
                   name="username"
                   id="username"
-                  aria-describedby="ampersand"
+                  aria-describedby="at-sign"
                   type="text"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
