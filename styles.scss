@@ -42,3 +42,15 @@ $enable-responsive-font-sizes: true;
 a.dropdown-item {
   cursor: pointer;
 }
+
+// Reset .card label
+.card label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #252422
+}
+
+// Reset .form-text
+.form-text {
+  font-size: 80%;
+}
