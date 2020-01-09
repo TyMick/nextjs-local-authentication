@@ -163,11 +163,11 @@ function Settings(props) {
                           formik.touched.password && !!formik.errors.password
                         }
                       />
+                      <FormFeedback>{formik.errors.password}</FormFeedback>
                       <FormText color="muted">
                         Leave this blank if you don't want to change your
                         password.
                       </FormText>
-                      <FormFeedback>{formik.errors.password}</FormFeedback>
                     </FormGroup>
 
                     <FormGroup>
