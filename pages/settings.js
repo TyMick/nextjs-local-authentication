@@ -125,7 +125,7 @@ function Settings(props) {
                 {formik => (
                   <Form noValidate onSubmit={formik.handleSubmit}>
                     <FormGroup>
-                      <Label for="username" className="text-dark">
+                      <Label for="username">
                         Username
                       </Label>
                       <InputGroup>
@@ -149,7 +149,7 @@ function Settings(props) {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label for="newPassword" className="text-dark">
+                      <Label for="newPassword">
                         New password
                       </Label>
                       <Input
@@ -171,7 +171,7 @@ function Settings(props) {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label for="confirmNewPassword" className="text-dark">
+                      <Label for="confirmNewPassword">
                         Confirm new password
                       </Label>
                       <Input

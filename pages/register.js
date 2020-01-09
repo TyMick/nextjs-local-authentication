@@ -86,7 +86,7 @@ export default function Register() {
             style={{ width: "420px" }}
           >
             <FormGroup>
-              <Label for="username" className="text-dark">
+              <Label for="username">
                 Username
               </Label>
               <InputGroup>
@@ -108,7 +108,7 @@ export default function Register() {
             </FormGroup>
 
             <FormGroup>
-              <Label for="password" className="text-dark">
+              <Label for="password">
                 Password
               </Label>
               <Input
@@ -124,7 +124,7 @@ export default function Register() {
             </FormGroup>
 
             <FormGroup>
-              <Label for="retypePassword" className="text-dark">
+              <Label for="retypePassword">
                 Retype password
               </Label>
               <Input

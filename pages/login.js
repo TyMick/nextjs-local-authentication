@@ -72,7 +72,7 @@ export default function Login() {
             style={{ width: "420px" }}
           >
             <FormGroup>
-              <Label for="usernameOrEmail" className="text-dark">
+              <Label for="usernameOrEmail">
                 Username or email
               </Label>
               <Input
@@ -90,7 +90,7 @@ export default function Login() {
             </FormGroup>
 
             <FormGroup>
-              <Label for="password" className="text-dark">
+              <Label for="password">
                 Password
               </Label>
               <Input
@@ -105,7 +105,7 @@ export default function Login() {
             </FormGroup>
 
             <FormGroup check>
-              <Label check className="text-dark">
+              <Label check>
                 <Input
                   name="remember"
                   type="checkbox"
