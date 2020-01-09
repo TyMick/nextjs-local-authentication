@@ -12,7 +12,8 @@ import {
   FormFeedback,
   Button,
   Row,
-  Spinner
+  Spinner,
+  FormText
 } from "reactstrap";
 import Link from "next/link";
 import LoginLayout from "../components/login-layout";
@@ -105,6 +106,7 @@ export default function Register() {
                 />
                 <FormFeedback>{formik.errors.username}</FormFeedback>
               </InputGroup>
+              <FormText color="muted">You can change this later.</FormText>
             </FormGroup>
 
             <FormGroup>
