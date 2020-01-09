@@ -87,7 +87,6 @@ export default function Login() {
                   !!formik.errors.usernameOrEmail
                 }
               />
-              <FormFeedback>{formik.errors.usernameOrEmail}</FormFeedback>
             </FormGroup>
 
             <FormGroup>
@@ -103,7 +102,6 @@ export default function Login() {
                 value={formik.values.password}
                 invalid={formik.touched.password && !!formik.errors.password}
               />
-              <FormFeedback>{formik.errors.password}</FormFeedback>
             </FormGroup>
 
             <FormGroup check>
