@@ -41,14 +41,14 @@ export default function Register() {
           retypePassword: Yup.string().required("Just to make sure.")
         })}
         onSubmit={async values => {
-          setLoading(true);
-
           if (values.password != values.retypePassword) {
             setFieldError(
               "retypePassword",
               "Oops, your passwords don't match!"
             );
           } else {
+            setLoading(true);
+
             try {
               const response = await fetch("/api/register", {
                 method: "POST",
