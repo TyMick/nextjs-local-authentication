@@ -24,6 +24,7 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import nextCookie from "next-cookies";
 import fetch from "isomorphic-unfetch";
+import { Router } from "next/router";
 
 import Layout from "../components/layout";
 import "../styles.scss";
@@ -49,11 +50,12 @@ function Settings(props) {
                   confirmNewPassword: ""
                 }}
                 validationSchema={Yup.object({
-                  username: Yup.string().matches(
-                    /^\w+$/,
-                    "Usernames can only consist of letters, numbers, and underscores."
-                  )
-                  .required("You need a username."),
+                  username: Yup.string()
+                    .matches(
+                      /^\w+$/,
+                      "Usernames can only consist of letters, numbers, and underscores."
+                    )
+                    .required("You need a username."),
                   newPassword: Yup.string(),
                   confirmNewPassword: Yup.string()
                 })}
@@ -125,9 +127,7 @@ function Settings(props) {
                 {formik => (
                   <Form noValidate onSubmit={formik.handleSubmit}>
                     <FormGroup>
-                      <Label for="username">
-                        Username
-                      </Label>
+                      <Label for="username">Username</Label>
                       <InputGroup>
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText id="at-sign">@</InputGroupText>
@@ -149,9 +149,7 @@ function Settings(props) {
                     </FormGroup>
 
                     <FormGroup>
-                      <Label for="newPassword">
-                        New password
-                      </Label>
+                      <Label for="newPassword">New password</Label>
                       <Input
                         name="newPassword"
                         id="newPassword"
@@ -240,9 +238,15 @@ Settings.getInitialProps = async ctx => {
   // Grab user _id from auth cookie
   const { token } = nextCookie(ctx);
 
+  const redirectOnError = () => {
+    typeof window !== "undefined"
+      ? Router.push("/login")
+      : ctx.res.writeHead(302, { Location: "/login" }).end();
+  };
+
   try {
     // Ask for user data from profile API
-    const response = await fetch("/api/profile", {
+    const response = await fetch(process.env.host + "/api/profile", {
       credentials: "include",
       headers: {
         authorization: JSON.stringify({ token })
@@ -255,10 +259,10 @@ Settings.getInitialProps = async ctx => {
       props.userId = token;
       return props;
     } else {
-      return logout();
+      return redirectOnError();
     }
   } catch (err) {
-    return logout();
+    return redirectOnError();
   }
 };
 

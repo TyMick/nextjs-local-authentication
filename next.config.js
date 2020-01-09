@@ -6,6 +6,7 @@ const withFonts = require("next-fonts");
 
 module.exports = withSass(withFonts({
   env: {
-    DB: process.env.DB
+    DB: process.env.DB,
+    host: process.env.host
   }
 }));
