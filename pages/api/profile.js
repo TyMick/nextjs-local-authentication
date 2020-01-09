@@ -1,6 +1,6 @@
 "use strict";
 
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectID } from "mongodb";
 
 const dbName = "stars-align";
 const colName = "users";
@@ -23,7 +23,7 @@ export default async (req, res) => {
 
     // Find user
     const user = await col.findOne(
-      { _id: token },
+      { _id: new ObjectID(token) },
       {
         projection: {
           username: 1,
