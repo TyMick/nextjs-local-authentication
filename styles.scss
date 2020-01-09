@@ -27,6 +27,21 @@ $enable-responsive-font-sizes: true;
 .input-group-btn:not(:first-child):not(:last-child).is-invalid {
   border-left: 1px solid #dc3545;
 }
+.input-group .form-control:last-child,
+.input-group-btn:last-child > .dropdown-toggle,
+.input-group-btn:first-child > .btn:not(:first-child) {
+  border-left: 1px solid #dddddd;
+}
+.input-group .form-control:last-child:focus,
+.input-group-btn:last-child:focus > .dropdown-toggle,
+.input-group-btn:first-child:focus > .btn:not(:first-child) {
+  border-left: 1px solid #9a9a9a;
+}
+.input-group .form-control:last-child.is-invalid,
+.input-group-btn:last-child.is-invalid > .dropdown-toggle,
+.input-group-btn:first-child.is-invalid > .btn:not(:first-child) {
+  border-left: 1px solid #dc3545;
+}
 
 // Fix .form-check-input bugs
 .form-check input[type="checkbox"],
