@@ -18,7 +18,11 @@ import {
   FormText,
   Row,
   Button,
-  Spinner
+  Spinner,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -33,6 +37,94 @@ import { withAuthSync, logout } from "../utils/auth";
 function Settings({ token, userData }) {
   const [updating, setUpdating] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [deleteModal, setDeleteModal] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+
+  const submitProfileUpdates = async (values, { resetForm, setFieldError }) => {
+    // Remove `profile updated` badge if there
+    setUpdated(false);
+
+    // Make sure password fields match
+    if (values.newPassword != values.confirmNewPassword) {
+      setFieldError("confirmNewPassword", "Oops, your passwords don't match!");
+    } else {
+      // Make sure there are actually updates to send
+      let updates = {};
+      if (values.username != userData.username) {
+        updates.username = values.username;
+      }
+      if (values.newPassword) {
+        updates.password = values.newPassword;
+      }
+      if (updates != {}) {
+        // Put loading symbol on submit button
+        setUpdating(true);
+
+        try {
+          // Send updates to API
+          const response = await fetch("/api/update-profile", {
+            async: true,
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              userId: token,
+              updates: updates
+            })
+          });
+
+          // Handle response from API
+          if (response.status === 200) {
+            // Update props with new user data
+            delete updates.password;
+            Object.assign(userData, updates);
+
+            resetForm({
+              values: {
+                username: userData.username,
+                newPassword: "",
+                confirmNewPassword: ""
+              }
+            });
+            setUpdated(true);
+            setUpdating(false);
+          } else if (response.status === 409) {
+            setFieldError("username", "That username is already taken.");
+            setUpdating(false);
+          } else if (response.status === 401) {
+            return logout();
+          } else {
+            // https://github.com/developit/unfetch#caveats
+            let error = new Error(response.statusText);
+            error.response = response;
+            throw error;
+          }
+        } catch (err) {
+          console.error(
+            "You have an error in your code or there are network issues.",
+            err
+          );
+        }
+
+        setUpdating(false);
+      }
+    }
+  };
+
+  const toggleDeleteModal = () => {
+    if (!deleting) {
+      setDeleteModal(!deleteModal);
+    }
+  };
+
+  const closeModalBtn = (
+    <button className="close" onClick={toggleDeleteModal} disabled={deleting}>
+      &times;
+    </button>
+  );
+
+  const deleteAccount = () => {
+    setDeleting(true);
+  };
 
   return (
     <Layout pageTitle="Settings">
@@ -59,81 +151,7 @@ function Settings({ token, userData }) {
                   newPassword: Yup.string(),
                   confirmNewPassword: Yup.string()
                 })}
-                onSubmit={async (values, { resetForm, setFieldError }) => {
-                  // Remove `profile updated` badge if there
-                  setUpdated(false);
-
-                  // Make sure password fields match
-                  if (values.newPassword != values.confirmNewPassword) {
-                    setFieldError(
-                      "confirmNewPassword",
-                      "Oops, your passwords don't match!"
-                    );
-                  } else {
-                    // Make sure there are actually updates to send
-                    let updates = {};
-                    if (values.username != userData.username) {
-                      updates.username = values.username;
-                    }
-                    if (values.newPassword) {
-                      updates.password = values.newPassword;
-                    }
-                    if (updates != {}) {
-                      // Put loading symbol on submit button
-                      setUpdating(true);
-
-                      try {
-                        // Send updates to API
-                        const response = await fetch("/api/update-profile", {
-                          async: true,
-                          method: "POST",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({
-                            userId: token,
-                            updates: updates
-                          })
-                        });
-
-                        // Handle response from API
-                        if (response.status === 200) {
-                          // Update props with new user data
-                          delete updates.password;
-                          Object.assign(userData, updates);
-
-                          resetForm({
-                            values: {
-                              username: userData.username,
-                              newPassword: "",
-                              confirmNewPassword: ""
-                            }
-                          });
-                          setUpdated(true);
-                          setUpdating(false);
-                        } else if (response.status === 409) {
-                          setFieldError(
-                            "username",
-                            "That username is already taken."
-                          );
-                          setUpdating(false);
-                        } else if (response.status === 401) {
-                          return logout();
-                        } else {
-                          // https://github.com/developit/unfetch#caveats
-                          let error = new Error(response.statusText);
-                          error.response = response;
-                          throw error;
-                        }
-                      } catch (err) {
-                        console.error(
-                          "You have an error in your code or there are network issues.",
-                          err
-                        );
-                      }
-
-                      setUpdating(false);
-                    }
-                  }
-                }}
+                onSubmit={submitProfileUpdates}
               >
                 {formik => (
                   <Form noValidate onSubmit={formik.handleSubmit}>
@@ -204,24 +222,14 @@ function Settings({ token, userData }) {
 
                     <Row>
                       <div className="update ml-auto mr-auto">
-                        {updating ? (
-                          <Button
-                            className="btn-round"
-                            color="primary"
-                            type="submit"
-                            disabled
-                          >
-                            <Spinner size="sm" />
-                          </Button>
-                        ) : (
-                          <Button
-                            className="btn-round"
-                            color="primary"
-                            type="submit"
-                          >
-                            Update profile
-                          </Button>
-                        )}
+                        <Button
+                          className="btn-round"
+                          color="primary"
+                          type="submit"
+                          disabled={updating}
+                        >
+                          {updating ? <Spinner size="sm" /> : "Update profile"}
+                        </Button>
                       </div>
                     </Row>
 
@@ -233,6 +241,51 @@ function Settings({ token, userData }) {
                         </div>
                       </Row>
                     )}
+
+                    <hr />
+
+                    <div>
+                      <Button
+                        onClick={toggleDeleteModal}
+                        color="link"
+                        className="text-danger"
+                      >
+                        Delete your account.
+                      </Button>
+                    </div>
+                    <Modal
+                      isOpen={deleteModal}
+                      centered="true"
+                      toggle={toggleDeleteModal}
+                    >
+                      <ModalHeader
+                        toggle={toggleDeleteModal}
+                        close={closeModalBtn}
+                      >
+                        Delete account
+                      </ModalHeader>
+                      <ModalBody>Are you sure? This can't be undone.</ModalBody>
+                      <ModalFooter>
+                        <Button
+                          color="secondary"
+                          onClick={toggleDeleteModal}
+                          disabled={deleting}
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          color="danger"
+                          onClick={deleteAccount}
+                          disabled={deleting}
+                        >
+                          {deleting ? (
+                            <Spinner size="sm" />
+                          ) : (
+                            "Yes, delete my account"
+                          )}
+                        </Button>
+                      </ModalFooter>
+                    </Modal>
                   </Form>
                 )}
               </Formik>

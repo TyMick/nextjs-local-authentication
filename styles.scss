@@ -1,6 +1,7 @@
 $enable-responsive-font-sizes: true;
 @import "~bootstrap/scss/bootstrap.scss";
 
+$danger-color: #dc3545;
 @import "vendor/creative-tim/scss/paper-dashboard.scss";
 
 // Reset .input-group-text styles closer to Bootstrap defaults
@@ -67,4 +68,45 @@ a.dropdown-item {
 // Reset .form-text
 .form-text {
   font-size: 80%;
+}
+
+// Reset .btn-link
+.btn-link,
+.btn.btn-link {
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-transform: none;
+  margin: inherit;
+  color: $link-color;
+  text-decoration: $link-decoration;
+  border: none;
+  padding: $padding-base-vertical $padding-base-horizontal;
+  background-color: $transparent-bg !important;
+
+
+  @include hover {
+    color: $link-hover-color !important;
+    text-decoration: $link-hover-decoration;
+    background-color: $transparent-bg !important;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+    box-shadow: none;
+    color: $link-hover-color !important;
+    background-color: $transparent-bg !important;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+    background-color: $transparent-bg !important;
+  }
+
+  &.text-danger {
+    color: $danger-color !important;
+  }
 }
