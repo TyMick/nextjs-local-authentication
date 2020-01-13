@@ -30,7 +30,7 @@ import Layout from "../components/layout";
 import "../styles.scss";
 import { withAuthSync, logout } from "../utils/auth";
 
-function Settings(props) {
+function Settings({ token, userData }) {
   const [updating, setUpdating] = useState(false);
   const [updated, setUpdated] = useState(false);
 
@@ -45,7 +45,7 @@ function Settings(props) {
             <CardBody>
               <Formik
                 initialValues={{
-                  username: props.data.username,
+                  username: userData.username,
                   newPassword: "",
                   confirmNewPassword: ""
                 }}
@@ -59,7 +59,7 @@ function Settings(props) {
                   newPassword: Yup.string(),
                   confirmNewPassword: Yup.string()
                 })}
-                onSubmit={async values => {
+                onSubmit={async (values, { resetForm, setFieldError }) => {
                   // Remove `profile updated` badge if there
                   setUpdated(false);
 
@@ -72,7 +72,7 @@ function Settings(props) {
                   } else {
                     // Make sure there are actually updates to send
                     let updates = {};
-                    if (values.username != props.data.username) {
+                    if (values.username != userData.username) {
                       updates.username = values.username;
                     }
                     if (values.newPassword) {
@@ -85,16 +85,28 @@ function Settings(props) {
                       try {
                         // Send updates to API
                         const response = await fetch("/api/update-profile", {
+                          async: true,
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
                           body: JSON.stringify({
-                            userId: props.userId,
+                            userId: token,
                             updates: updates
                           })
                         });
 
                         // Handle response from API
                         if (response.status === 200) {
+                          // Update props with new user data
+                          delete updates.password;
+                          Object.assign(userData, updates);
+
+                          resetForm({
+                            values: {
+                              username: userData.username,
+                              newPassword: "",
+                              confirmNewPassword: ""
+                            }
+                          });
                           setUpdated(true);
                           setUpdating(false);
                         } else if (response.status === 409) {
@@ -106,7 +118,6 @@ function Settings(props) {
                         } else if (response.status === 401) {
                           return logout();
                         } else {
-                          console.log("User update failed.");
                           // https://github.com/developit/unfetch#caveats
                           let error = new Error(response.statusText);
                           error.response = response;
@@ -253,10 +264,9 @@ Settings.getInitialProps = async ctx => {
       }
     });
 
-    if (response.status === 200) {
+    if (response.ok) {
       // Insert profile data into props
       const props = response.json();
-      props.userId = token;
       return props;
     } else {
       return redirectOnError();

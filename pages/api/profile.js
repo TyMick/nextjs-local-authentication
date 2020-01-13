@@ -39,7 +39,7 @@ export default async (req, res) => {
     } else {
       // Send all-clear with user data
       res.status(200).json({
-        data: {
+        userData: {
           username: user.username,
           displayName: user.display_name,
           plan: user.plan
