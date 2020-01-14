@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Nav } from "reactstrap";
 
-function Sidebar(props) {
+export default ({ bgColor, activeColor, routes }) => {
   const router = useRouter();
 
   // verifies if routeName is the one active (in browser input)
@@ -16,8 +16,8 @@ function Sidebar(props) {
   return (
     <div
       className="sidebar"
-      data-color={props.bgColor}
-      data-active-color={props.activeColor}
+      data-color={bgColor}
+      data-active-color={activeColor}
     >
       <div className="logo">
         <a href="#" className="simple-text logo-mini">
@@ -31,7 +31,7 @@ function Sidebar(props) {
       </div>
       <div className="sidebar-wrapper">
         <Nav>
-          {props.routes.map((route, key) => {
+          {routes.map((route, key) => {
             return (
               <li className={activeRoute(route.path)} key={key}>
                 <Link href={route.path}>
@@ -48,5 +48,3 @@ function Sidebar(props) {
     </div>
   );
 }
-
-export default Sidebar;

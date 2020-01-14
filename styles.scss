@@ -84,7 +84,6 @@ a.dropdown-item {
   padding: $padding-base-vertical $padding-base-horizontal;
   background-color: $transparent-bg !important;
 
-
   @include hover {
     color: $link-hover-color !important;
     text-decoration: $link-hover-decoration;
@@ -117,21 +116,29 @@ a.dropdown-item {
 }
 
 // Fix sidebar page markers
-@media screen and (min-width: 992px){
-  .sidebar{
-    .sidebar-wrapper{
-      li.active{
+@media screen and (min-width: 992px) {
+  .sidebar {
+    .sidebar-wrapper {
+      li.active {
         > a:not([data-toggle="collapse"]),
         > [data-toggle="collapse"] + div .nav li {
-          &:before{
+          &:before {
             right: -15px;
           }
 
-          &:after{
+          &:after {
             right: -15px;
           }
         }
       }
     }
+  }
+}
+
+// Fix sidebar content height when overflowing
+.sidebar,
+.off-canvas-sidebar {
+  .sidebar-wrapper {
+    height: calc(100vh - 75px);
   }
 }
