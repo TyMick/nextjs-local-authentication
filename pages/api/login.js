@@ -31,7 +31,7 @@ export default async (req, res) => {
 
     // If no username or email, user doesn't exist
     if (!user) {
-      res.status(401).json({ message: "No user found" });
+      res.status(404).json({ message: "No user found" });
     } else {
       // Compare user-entered password to stored hash
       const passwordMatch = await bcrypt.compare(password, user.password_hash);

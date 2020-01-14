@@ -28,11 +28,13 @@ export default function Login() {
       <Formik
         initialValues={{ usernameOrEmail: "", password: "", remember: false }}
         validationSchema={Yup.object({
-          usernameOrEmail: Yup.string().required(),
-          password: Yup.string().required(),
+          usernameOrEmail: Yup.string().required(
+            "Do not display this error message"
+          ),
+          password: Yup.string().required("Do not display this error message"),
           remember: Yup.boolean()
         })}
-        onSubmit={async values => {
+        onSubmit={async (values, { setFieldError }) => {
           setLoading(true);
 
           try {
@@ -47,6 +49,10 @@ export default function Login() {
             if (response.status === 200) {
               const { token } = await response.json();
               login({ token }, values.remember);
+            } else if (response.status === 404) {
+              setFieldError("usernameOrEmail", "No such user exists.");
+            } else if (response.status === 401) {
+              setFieldError("password", "Incorrect password.");
             } else {
               console.log("Login failed.");
               // https://github.com/developit/unfetch#caveats
@@ -72,9 +78,7 @@ export default function Login() {
             style={{ width: "420px" }}
           >
             <FormGroup>
-              <Label for="usernameOrEmail">
-                Username or email
-              </Label>
+              <Label for="usernameOrEmail">Username or email</Label>
               <Input
                 name="usernameOrEmail"
                 id="usernameOrEmail"
@@ -87,12 +91,14 @@ export default function Login() {
                   !!formik.errors.usernameOrEmail
                 }
               />
+              {formik.errors.usernameOrEmail !==
+                "Do not display this error message" && (
+                <FormFeedback>{formik.errors.usernameOrEmail}</FormFeedback>
+              )}
             </FormGroup>
 
             <FormGroup>
-              <Label for="password">
-                Password
-              </Label>
+              <Label for="password">Password</Label>
               <Input
                 name="password"
                 id="password"
@@ -102,6 +108,10 @@ export default function Login() {
                 value={formik.values.password}
                 invalid={formik.touched.password && !!formik.errors.password}
               />
+              {formik.errors.password !==
+                "Do not display this error message" && (
+                <FormFeedback>{formik.errors.password}</FormFeedback>
+              )}
             </FormGroup>
 
             <FormGroup check>
