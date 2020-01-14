@@ -63,7 +63,6 @@ function Settings({ token, userData }) {
         try {
           // Send updates to API
           const response = await fetch("/api/update-profile", {
-            async: true,
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
