@@ -255,7 +255,7 @@ function Settings({ token, userData }) {
                     </div>
                     <Modal
                       isOpen={deleteModal}
-                      centered="true"
+                      centered
                       toggle={toggleDeleteModal}
                     >
                       <ModalHeader
