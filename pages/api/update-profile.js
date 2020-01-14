@@ -35,12 +35,12 @@ export default async (req, res) => {
       }
 
       // Update user in database
-      const updateOp = await col.updateOne(
+      const result = await col.updateOne(
         { _id: new ObjectId(userId) },
         { $set: updates }
       );
 
-      if (updateOp.result.nModified === 1) {
+      if (result.modifiedCount === 1) {
         // Send all-clear
         res.status(200).json({ message: "User update complete!" });
       } else {
