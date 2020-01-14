@@ -8,7 +8,7 @@ const dbName = "stars-align";
 const colName = "users";
 
 export default async (req, res) => {
-  const { username, password } = JSON.parse(req.body);
+  const { username, password } = req.body;
 
   // Connect to dabatase
   const client = new MongoClient(process.env.DB, {
