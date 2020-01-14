@@ -41,7 +41,7 @@ export default function Register() {
           password: Yup.string().required("Please choose a password."),
           retypePassword: Yup.string().required("Just to make sure.")
         })}
-        onSubmit={async values => {
+        onSubmit={async (values, { setFieldError }) => {
           if (values.password != values.retypePassword) {
             setFieldError(
               "retypePassword",
