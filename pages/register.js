@@ -26,6 +26,7 @@ import "../styles.scss";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
+  const [networkErrors, setNetworkErrors] = useState(false);
 
   return (
     <LoginLayout pageTitle="Register">
@@ -42,6 +43,8 @@ export default function Register() {
           retypePassword: Yup.string().required("Just to make sure.")
         })}
         onSubmit={async (values, { setFieldError }) => {
+          setNetworkErrors(false);
+
           if (values.password != values.retypePassword) {
             setFieldError(
               "retypePassword",
@@ -73,6 +76,7 @@ export default function Register() {
                 "You have an error in your code or there are network issues.",
                 err
               );
+              setNetworkErrors(true);
             }
           }
 
@@ -87,10 +91,8 @@ export default function Register() {
             style={{ width: "420px" }}
           >
             <FormGroup>
-              <Label for="username">
-                Username
-              </Label>
-              <InputGroup>
+              <Label for="username">Username</Label>
+              <InputGroup className="mb-0">
                 <InputGroupAddon addonType="prepend">
                   <InputGroupText id="at-sign">@</InputGroupText>
                 </InputGroupAddon>
@@ -110,9 +112,7 @@ export default function Register() {
             </FormGroup>
 
             <FormGroup>
-              <Label for="password">
-                Password
-              </Label>
+              <Label for="password">Password</Label>
               <Input
                 name="password"
                 id="password"
@@ -126,9 +126,7 @@ export default function Register() {
             </FormGroup>
 
             <FormGroup>
-              <Label for="retypePassword">
-                Retype password
-              </Label>
+              <Label for="retypePassword">Retype password</Label>
               <Input
                 name="retypePassword"
                 id="retypePassword"
@@ -148,26 +146,28 @@ export default function Register() {
             </FormGroup>
 
             <Row>
-              <div className="update ml-auto mr-auto">
-                {loading ? (
-                  <Button
-                    className="btn-round"
-                    color="primary"
-                    type="submit"
-                    disabled
-                  >
-                    <Spinner size="sm" />
-                  </Button>
-                ) : (
-                  <Button className="btn-round" color="primary" type="submit">
-                    Register
-                  </Button>
-                )}
+              <div className="update mx-auto">
+                <Button
+                  className="btn-round"
+                  color="primary"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? <Spinner size="sm" /> : "Register"}
+                </Button>
               </div>
             </Row>
 
+            {networkErrors && (
+              <Row>
+                <div className="mx-auto text-danger">
+                  One of us is experiencing network errors 😞
+                </div>
+              </Row>
+            )}
+
             <Row>
-              <div className="update ml-auto mr-auto mb-2">
+              <div className="update mx-auto mb-2">
                 Already have an account?{" "}
                 <Link href="/login">
                   <a>Log in</a>

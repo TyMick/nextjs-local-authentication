@@ -22,6 +22,7 @@ import "../styles.scss";
 
 export default function Login() {
   const [loading, setLoading] = useState(false);
+  const [networkErrors, setNetworkErrors] = useState(false);
 
   return (
     <LoginLayout pageTitle="Login">
@@ -35,6 +36,7 @@ export default function Login() {
           remember: Yup.boolean()
         })}
         onSubmit={async (values, { setFieldError }) => {
+          setNetworkErrors(false);
           setLoading(true);
 
           try {
@@ -65,6 +67,7 @@ export default function Login() {
               "You have an error in your code or there are network issues.",
               err
             );
+            setNetworkErrors(true);
           }
 
           setLoading(false);
@@ -128,26 +131,28 @@ export default function Login() {
             </FormGroup>
 
             <Row>
-              <div className="update ml-auto mr-auto">
-                {loading ? (
-                  <Button
-                    className="btn-round"
-                    color="primary"
-                    type="submit"
-                    disabled
-                  >
-                    <Spinner size="sm" />
-                  </Button>
-                ) : (
-                  <Button className="btn-round" color="primary" type="submit">
-                    Log in
-                  </Button>
-                )}
+              <div className="update mx-auto">
+                <Button
+                  className="btn-round"
+                  color="primary"
+                  type="submit"
+                  disabled={loading}
+                >
+                  {loading ? <Spinner size="sm" /> : "Log in"}
+                </Button>
               </div>
             </Row>
 
+            {networkErrors && (
+              <Row>
+                <div className="mx-auto text-danger">
+                  One of us is experiencing network errors 😞
+                </div>
+              </Row>
+            )}
+
             <Row>
-              <div className="update ml-auto mr-auto mb-2">
+              <div className="update mx-auto mb-2">
                 Don't have an account yet?{" "}
                 <Link href="/register">
                   <a>Register</a>

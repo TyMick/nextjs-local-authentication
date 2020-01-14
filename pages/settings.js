@@ -37,12 +37,15 @@ import { withAuthSync, logout } from "../utils/auth";
 function Settings({ token, userData }) {
   const [updating, setUpdating] = useState(false);
   const [updated, setUpdated] = useState(false);
+  const [updateNetworkErrors, setUpdateNetworkErrors] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [deleteNetworkErrors, setDeleteNetworkErrors] = useState(false);
 
   const submitProfileUpdates = async (values, { resetForm, setFieldError }) => {
-    // Remove `profile updated` badge if there
+    // Remove `profile updated` or `network errors` if there
     setUpdated(false);
+    setUpdateNetworkErrors(false);
 
     // Make sure password fields match
     if (values.newPassword != values.confirmNewPassword) {
@@ -102,6 +105,7 @@ function Settings({ token, userData }) {
             "You have an error in your code or there are network issues.",
             err
           );
+          setUpdateNetworkErrors(true);
         }
 
         setUpdating(false);
@@ -110,9 +114,8 @@ function Settings({ token, userData }) {
   };
 
   const toggleDeleteModal = () => {
-    if (!deleting) {
-      setDeleteModal(!deleteModal);
-    }
+    setDeleteModal(!deleteModal);
+    setTimeout(setDeleteNetworkErrors, 1000, false); // Wait for modal animation to finish
   };
 
   const closeModalBtn = (
@@ -142,8 +145,11 @@ function Settings({ token, userData }) {
       console.error(
         "You have an error in your code or there are network issues.",
         err
-      )
+      );
+      setDeleteNetworkErrors(true);
     }
+
+    setDeleting(false);
   };
 
   return (
@@ -241,7 +247,7 @@ function Settings({ token, userData }) {
                     </FormGroup>
 
                     <Row>
-                      <div className="update ml-auto mr-auto">
+                      <div className="update mx-auto">
                         <Button
                           className="btn-round"
                           color="primary"
@@ -255,9 +261,17 @@ function Settings({ token, userData }) {
 
                     {updated && (
                       <Row>
-                        <div className="ml-auto mr-auto text-success">
+                        <div className="mx-auto text-success">
                           <i className="nc-icon nc-check-2" /> Your profile has
                           been updated!
+                        </div>
+                      </Row>
+                    )}
+
+                    {updateNetworkErrors && (
+                      <Row>
+                        <div className="mx-auto text-danger">
+                          One of us is experiencing network errors 😞
                         </div>
                       </Row>
                     )}
@@ -286,24 +300,32 @@ function Settings({ token, userData }) {
                       </ModalHeader>
                       <ModalBody>Are you sure? This can't be undone.</ModalBody>
                       <ModalFooter>
-                        <Button
-                          color="secondary"
-                          onClick={toggleDeleteModal}
-                          disabled={deleting}
-                        >
-                          Cancel
-                        </Button>
-                        <Button
-                          color="danger"
-                          onClick={deleteAccount}
-                          disabled={deleting}
-                        >
-                          {deleting ? (
-                            <Spinner size="sm" />
-                          ) : (
-                            "Yes, delete my account"
-                          )}
-                        </Button>
+                        {deleteNetworkErrors ? (
+                          <div className="text-danger">
+                            One of us is experiencing network errors 😞
+                          </div>
+                        ) : (
+                          <>
+                            <Button
+                              color="secondary"
+                              onClick={toggleDeleteModal}
+                              disabled={deleting}
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              color="danger"
+                              onClick={deleteAccount}
+                              disabled={deleting}
+                            >
+                              {deleting ? (
+                                <Spinner size="sm" />
+                              ) : (
+                                "Yes, delete my account"
+                              )}
+                            </Button>
+                          </>
+                        )}
                       </ModalFooter>
                     </Modal>
                   </Form>
