@@ -49,7 +49,8 @@ export default async (req, res) => {
       }
     }
   } catch (err) {
-    err.response
+    const { response } = err;
+    response
       ? res.status(response.status).json({ message: response.statusText })
       : res.status(500).json({ message: err.message });
   }
