@@ -89,16 +89,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.updateColor.bind(this));
-  }
-  componentDidUpdate(prevProps) {
-    if (
-      window.innerWidth < 993 &&
-      prevProps.router.pathname !== this.props.router.pathname &&
-      document.documentElement.className.indexOf("nav-open") !== -1
-    ) {
-      document.documentElement.classList.toggle("nav-open");
-      this.sidebarToggle.current.classList.toggle("toggled");
-    }
+    document.documentElement.classList.remove("nav-open");
   }
 
   render() {
