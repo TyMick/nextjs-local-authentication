@@ -121,8 +121,29 @@ function Settings({ token, userData }) {
     </button>
   );
 
-  const deleteAccount = () => {
+  const deleteAccount = async () => {
     setDeleting(true);
+
+    try {
+      const response = await fetch("/api/delete-account", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId: token })
+      });
+
+      if (response.status === 200 || response.status === 401) {
+        return logout();
+      } else {
+        let error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+      }
+    } catch (err) {
+      console.error(
+        "You have an error in your code or there are network issues.",
+        err
+      )
+    }
   };
 
   return (
