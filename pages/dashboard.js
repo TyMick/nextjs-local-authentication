@@ -10,7 +10,7 @@ const Dashboard = () => (
   <Layout pageTitle="Dashboard">
     <div className="content">
       <Container fluid>
-        <div class="h4 text-center"><em>This page intentionally left blank.</em></div>
+        <div className="h4 text-center"><em>This page intentionally left blank.</em></div>
       </Container>
     </div>
   </Layout>
