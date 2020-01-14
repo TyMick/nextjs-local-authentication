@@ -41,7 +41,7 @@ export default async (req, res) => {
       );
 
       if (result.modifiedCount === 1) {
-        // Send all-clear
+        // Mission accomplished
         res.status(200).json({ message: "User update complete!" });
       } else {
         // Alert if no user found
