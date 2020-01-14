@@ -17,8 +17,7 @@ function Layout(props) {
     <div className="wrapper">
       <Head>
         <title>
-          {"Stars Align" +
-            (props.pageTitle && " – " + props.pageTitle)}
+          {"Stars Align" + (props.pageTitle && " – " + props.pageTitle)}
         </title>
         <link
           rel="apple-touch-icon"
