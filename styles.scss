@@ -115,3 +115,23 @@ a.dropdown-item {
 .main-panel > .content {
   min-height: 0;
 }
+
+// Fix sidebar page markers
+@media screen and (min-width: 992px){
+  .sidebar{
+    .sidebar-wrapper{
+      li.active{
+        > a:not([data-toggle="collapse"]),
+        > [data-toggle="collapse"] + div .nav li {
+          &:before{
+            right: -15px;
+          }
+
+          &:after{
+            right: -15px;
+          }
+        }
+      }
+    }
+  }
+}
