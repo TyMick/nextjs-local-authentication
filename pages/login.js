@@ -79,7 +79,6 @@ export default function Login() {
             noValidate
             onSubmit={formik.handleSubmit}
             className="mx-auto"
-            style={{ width: "420px" }}
           >
             <FormGroup>
               <Label for="username">Username</Label>

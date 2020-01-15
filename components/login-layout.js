@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import Head from "next/head";
-import { Card, CardHeader, CardTitle, CardBody } from "reactstrap";
+import { Card, CardHeader, CardTitle, CardBody, Container } from "reactstrap";
 import Footer from "./footer";
 
 function LoginLayout(props) {
@@ -39,13 +39,15 @@ function LoginLayout(props) {
       </Head>
 
       <div className="bg-dark text-light d-flex flex-column min-vh-100">
-        <h1 className="py-5 text-center h2">Next.js local authentication</h1>
-        <Card className="flex-grow-0 mx-auto card-user">
-          <CardHeader>
-            <CardTitle tag="h5">{props.pageTitle}</CardTitle>
-          </CardHeader>
-          <CardBody>{props.children}</CardBody>
-        </Card>
+        <Container fluid>
+          <h1 className="py-5 text-center h2">Next.js local authentication example</h1>
+          <Card className="flex-grow-0 mx-auto card-user auth-form">
+            <CardHeader>
+              <CardTitle tag="h5">{props.pageTitle}</CardTitle>
+            </CardHeader>
+            <CardBody>{props.children}</CardBody>
+          </Card>
+        </Container>
         <Footer fluid />
       </div>
     </div>

@@ -139,3 +139,9 @@ a.dropdown-item {
     height: calc(100vh - 63px);
   }
 }
+
+// Width for login/register form
+.auth-form {
+  width: 100%;
+  max-width: 450px;
+}
