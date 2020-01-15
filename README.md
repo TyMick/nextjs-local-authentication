@@ -6,7 +6,7 @@ This is the beginning stages of an app I'm building. As long as the app itself i
 
 ## Pages
 
-- This demo consists of five pages: this index, /dashboard, /settings, /register, and /login.
+- This demo consists of five pages: a homepage, /dashboard, /settings, /register, and /login.
 - The dashboard and settings pages require aunthentication, so if you try to visit either before logging in, you'll be redirected to the login page.
 
 ## Accounts
@@ -28,7 +28,7 @@ This is the beginning stages of an app I'm building. As long as the app itself i
 
 ## Serverless functions
 
-- This demo's APIs (and server-rendered pages) are serverless functions created using [Next.js](https://nextjs.org/) and hosted on [ZEIT Now](https://zeit.co/).
+- This demo's APIs (and server-rendered pages) are serverless functions created using [Next.js](https://nextjs.org/) and (will soon be) hosted on [ZEIT Now](https://zeit.co/).
 
 Thanks for checking out this demo!
 
