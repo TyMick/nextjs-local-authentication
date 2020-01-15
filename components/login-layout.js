@@ -11,7 +11,7 @@ function LoginLayout(props) {
     <div className="wrapper">
       <Head>
         <title>
-          {"Stars Align" +
+          {"Next.js local authentication" +
             (props.pageTitle && " – " + props.pageTitle)}
         </title>
         <link
@@ -36,14 +36,10 @@ function LoginLayout(props) {
           href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
           rel="stylesheet"
         />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-        />
       </Head>
 
       <div className="bg-dark text-light d-flex flex-column min-vh-100">
-        <h1 className="py-5 mx-auto">&#x1F320; Stars Align</h1>
+        <h1 className="py-5 text-center h2">Next.js local authentication</h1>
         <Card className="flex-grow-0 mx-auto card-user">
           <CardHeader>
             <CardTitle tag="h5">{props.pageTitle}</CardTitle>

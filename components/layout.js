@@ -17,7 +17,7 @@ function Layout(props) {
     <div className="wrapper">
       <Head>
         <title>
-          {"Stars Align" + (props.pageTitle && " – " + props.pageTitle)}
+          {"Next.js local authentication" + (props.pageTitle && " – " + props.pageTitle)}
         </title>
         <link
           rel="apple-touch-icon"
@@ -40,10 +40,6 @@ function Layout(props) {
         <link
           href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
           rel="stylesheet"
-        />
-        <link
-          rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
         />
       </Head>
 
