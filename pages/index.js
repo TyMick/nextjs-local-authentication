@@ -140,7 +140,7 @@ export default () => {
                 <a href="https://react-bootstrap.netlify.com/">
                   React Bootstrap
                 </a>{" "}
-                better, but Paper Dashboard React already uses reactstrap in the
+                better, but Paper Dashboard React already uses reactstrap in its
                 template.
               </li>
             </ul>
