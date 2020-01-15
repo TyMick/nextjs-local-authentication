@@ -7,12 +7,7 @@ const dbName = "stars-align";
 const colName = "users";
 
 export default async (req, res) => {
-  let { usernameOrEmail, password } = JSON.parse(req.body);
-
-  // Slice off any user-entered starting `@`
-  if (usernameOrEmail.startsWith("@")) {
-    usernameOrEmail = usernameOrEmail.slice(1);
-  }
+  let { username, password } = JSON.parse(req.body);
 
   // Connect to database
   const client = new MongoClient(process.env.DB, {
@@ -23,11 +18,7 @@ export default async (req, res) => {
     const col = client.db(dbName).collection(colName);
 
     // Try to find username
-    let user = await col.findOne({ username: usernameOrEmail });
-    if (!user) {
-      // Try to find email
-      user = await col.findOne({ email: usernameOrEmail });
-    }
+    let user = await col.findOne({ username: username });
 
     // If no username or email, user doesn't exist
     if (!user) {

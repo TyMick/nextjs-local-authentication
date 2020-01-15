@@ -5,6 +5,9 @@ import {
   Form,
   FormGroup,
   Label,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
   Input,
   FormFeedback,
   Button,
@@ -27,11 +30,9 @@ export default function Login() {
   return (
     <LoginLayout pageTitle="Login">
       <Formik
-        initialValues={{ usernameOrEmail: "", password: "", remember: false }}
+        initialValues={{ username: "", password: "", remember: false }}
         validationSchema={Yup.object({
-          usernameOrEmail: Yup.string().required(
-            "Do not display this error message"
-          ),
+          username: Yup.string().required("Do not display this error message"),
           password: Yup.string().required("Do not display this error message"),
           remember: Yup.boolean()
         })}
@@ -44,7 +45,7 @@ export default function Login() {
               method: "POST",
               headhers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                usernameOrEmail: values.usernameOrEmail,
+                username: values.username,
                 password: values.password
               })
             });
@@ -52,7 +53,7 @@ export default function Login() {
               const { token } = await response.json();
               login({ token }, values.remember);
             } else if (response.status === 404) {
-              setFieldError("usernameOrEmail", "No such user exists.");
+              setFieldError("username", "No such user exists.");
             } else if (response.status === 401) {
               setFieldError("password", "Incorrect password.");
             } else {
@@ -81,23 +82,26 @@ export default function Login() {
             style={{ width: "420px" }}
           >
             <FormGroup>
-              <Label for="usernameOrEmail">Username or email</Label>
-              <Input
-                name="usernameOrEmail"
-                id="usernameOrEmail"
-                type="text"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.usernameOrEmail}
-                invalid={
-                  formik.touched.usernameOrEmail &&
-                  !!formik.errors.usernameOrEmail
-                }
-              />
-              {formik.errors.usernameOrEmail !==
-                "Do not display this error message" && (
-                <FormFeedback>{formik.errors.usernameOrEmail}</FormFeedback>
-              )}
+              <Label for="username">Username</Label>
+              <InputGroup className="mb-0">
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText id="at-sign">@</InputGroupText>
+                </InputGroupAddon>
+                <Input
+                  name="username"
+                  id="username"
+                  aria-describedby="at-sign"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.username}
+                  invalid={formik.touched.username && !!formik.errors.username}
+                />
+                {formik.errors.username !==
+                  "Do not display this error message" && (
+                  <FormFeedback>{formik.errors.username}</FormFeedback>
+                )}
+              </InputGroup>
             </FormGroup>
 
             <FormGroup>
