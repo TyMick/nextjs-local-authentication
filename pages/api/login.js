@@ -20,7 +20,7 @@ export default async (req, res) => {
     // Try to find username
     let user = await col.findOne({ username: username });
 
-    // If no username or email, user doesn't exist
+    // If no username, user doesn't exist
     if (!user) {
       res.status(404).json({ message: "No user found" });
     } else {
