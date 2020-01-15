@@ -1,7 +1,6 @@
 {
-  "name": "stars-align",
+  "name": "nextjs-local-authentication",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
