@@ -1,7 +1,7 @@
 "use strict";
 
 import React from "react";
-import { Container, Card } from "reactstrap";
+import { Container } from "reactstrap";
 import Layout from "../components/layout";
 import "../styles.scss";
 import { withAuthSync } from "../utils/auth";
