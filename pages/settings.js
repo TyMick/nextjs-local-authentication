@@ -379,7 +379,7 @@ Settings.getInitialProps = async ctx => {
 
   try {
     // Ask for user data from profile API
-    const response = await fetch(process.env.host + "/api/profile", {
+    const response = await fetch(process.env.HOST + "/api/profile", {
       credentials: "include",
       headers: {
         authorization: JSON.stringify({ token })
