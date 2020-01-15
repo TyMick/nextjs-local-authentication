@@ -5,38 +5,33 @@ $danger-color: #dc3545;
 @import "vendor/creative-tim/scss/paper-dashboard.scss";
 
 // Reset .input-group-text styles closer to Bootstrap defaults
-.form-group .input-group-prepend .input-group-text,
-.form-group .input-group-append .input-group-text,
-.input-group .input-group-prepend .input-group-text,
-.input-group .input-group-append .input-group-text {
-  padding: 10px;
+.form-group,
+.input-group {
+  .input-group-prepend .input-group-text,
+  .input-group-append .input-group-text {
+    padding: 10px;
+  }
 }
 .input-group-append .input-group-text,
 .input-group-prepend .input-group-text {
   background-color: #e9ecef;
 }
 .input-group .form-control:not(:first-child):not(:last-child),
-.input-group-btn:not(:first-child):not(:last-child) {
-  border-left: 1px solid #dddddd;
-}
-.input-group .form-control:not(:first-child):not(:last-child):focus,
-.input-group-btn:not(:first-child):not(:last-child):focus {
-  border-left: 1px solid #9a9a9a;
-}
-.input-group .form-control:not(:first-child):not(:last-child).is-invalid,
-.input-group-btn:not(:first-child):not(:last-child).is-invalid {
-  border-left: 1px solid #dc3545;
-}
+.input-group-btn:not(:first-child):not(:last-child),
 .input-group .form-control:last-child,
 .input-group-btn:last-child > .dropdown-toggle,
 .input-group-btn:first-child > .btn:not(:first-child) {
   border-left: 1px solid #dddddd;
 }
+.input-group .form-control:not(:first-child):not(:last-child):focus,
+.input-group-btn:not(:first-child):not(:last-child):focus,
 .input-group .form-control:last-child:focus,
 .input-group-btn:last-child:focus > .dropdown-toggle,
 .input-group-btn:first-child:focus > .btn:not(:first-child) {
   border-left: 1px solid #9a9a9a;
 }
+.input-group .form-control:not(:first-child):not(:last-child).is-invalid,
+.input-group-btn:not(:first-child):not(:last-child).is-invalid,
 .input-group .form-control:last-child.is-invalid,
 .input-group-btn:last-child.is-invalid > .dropdown-toggle,
 .input-group-btn:first-child.is-invalid > .btn:not(:first-child) {
@@ -49,8 +44,10 @@ $danger-color: #dc3545;
   opacity: 1;
   visibility: visible;
 }
-.form-check .form-check-label {
-  padding-left: 20px;
+.form-check {
+  .form-check-label {
+    padding-left: 20px;
+  }
 }
 
 // Fix pointer on a.dropdown-item
@@ -60,9 +57,9 @@ a.dropdown-item {
 
 // Reset .card label
 .card label {
-  font-size: 1rem;
+  font-size: $font-size-large;
   margin-bottom: 0.5rem;
-  color: #252422;
+  color: $card-black-color;
 }
 
 // Reset .form-text
