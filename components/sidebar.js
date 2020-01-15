@@ -10,7 +10,7 @@ export default ({ bgColor, activeColor, routes }) => {
 
   // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
-    return router.pathname.indexOf(routeName) > -1 ? "active" : "";
+    return router.pathname === routeName ? "active" : "";
   }
 
   return (
