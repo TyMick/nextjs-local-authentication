@@ -1,3 +1,8 @@
+/*
+ *  This module has been adapted from the Next.js example app with-cookie-auth,
+ *  by ZEIT, Inc.
+ *    https://github.com/zeit/next.js/tree/canary/examples/with-cookie-auth
+ */
 "use strict";
 
 import React, { useEffect } from "react";

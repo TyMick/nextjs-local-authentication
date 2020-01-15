@@ -18,6 +18,13 @@ This page has been adapted from Paper Dashboard React, v1.1.0, by Creative Tim.
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+
+/*
+ *  Portions of this page have been adapted from the Next.js example app
+ *  with-cookie-auth, by ZEIT, Inc.
+ *    https://github.com/zeit/next.js/tree/canary/examples/with-cookie-auth
+ */
+
 "use strict";
 
 import React, { useState } from "react";

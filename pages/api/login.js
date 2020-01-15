@@ -1,3 +1,8 @@
+/*
+ *  Portions of this API have been adapted from the Next.js example app
+ *  with-cookie-auth, by ZEIT, Inc.
+ *    https://github.com/zeit/next.js/tree/canary/examples/with-cookie-auth
+ */
 "use strict";
 
 import bcrypt from "bcrypt";
