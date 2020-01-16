@@ -1,6 +1,13 @@
 {
   "name": "nextjs-local-authentication",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": {
+    "name": "Ty Mick",
+    "email": "ty@tymick.me",
+    "url": "http://tymick.me"
+  },
+  "repository": "github:TyWMick/nextjs-local-authentication",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
