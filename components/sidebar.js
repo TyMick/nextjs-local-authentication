@@ -42,7 +42,7 @@ export default ({ bgColor, activeColor, routes }) => {
       <div className="logo">
         <a href="#" className="simple-text logo-mini">
           <div className="logo-img">
-            <img src="/apple-touch-icon.png" alt="Stars Align logo" />
+            <img src="/stars-align.png" alt="Stars Align logo" />
           </div>
         </a>
         <a href="#" className="simple-text logo-normal">
