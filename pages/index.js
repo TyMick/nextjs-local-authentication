@@ -159,9 +159,10 @@ export default () => {
 
             <p>
               Sincerely,
-              <br />
-              <a href="http://tymick.me">Ty</a>
             </p>
+            <div className="signature">
+              <a href="http://tymick.me">Ty</a>
+            </div>
           </Card>
         </Container>
       </div>

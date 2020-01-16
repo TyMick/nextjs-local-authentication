@@ -37,7 +37,8 @@ function Layout(props) {
     <div className="wrapper">
       <Head>
         <title>
-          {"Next.js local authentication" + (props.pageTitle && " – " + props.pageTitle)}
+          {"Next.js local authentication" +
+            (props.pageTitle && " – " + props.pageTitle)}
         </title>
         <link
           rel="apple-touch-icon"
@@ -58,7 +59,7 @@ function Layout(props) {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link
-          href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+          href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Montserrat:200,400,700&display=swap"
           rel="stylesheet"
         />
       </Head>

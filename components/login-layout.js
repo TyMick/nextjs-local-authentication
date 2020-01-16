@@ -33,14 +33,16 @@ function LoginLayout(props) {
         />
         <link rel="manifest" href="/site.webmanifest" />
         <link
-          href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+          href="https://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Montserrat:200,400,700&display=swap"
           rel="stylesheet"
         />
       </Head>
 
       <div className="bg-dark text-light d-flex flex-column min-vh-100">
         <Container fluid>
-          <h1 className="py-5 text-center h2">Next.js local authentication example</h1>
+          <h1 className="py-5 text-center h2">
+            Next.js local authentication example
+          </h1>
           <Card className="flex-grow-0 mx-auto card-user auth-form">
             <CardHeader>
               <CardTitle tag="h5">{props.pageTitle}</CardTitle>
