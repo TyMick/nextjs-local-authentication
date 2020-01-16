@@ -12,8 +12,13 @@ import nextCookies from "next-cookies";
 
 export const login = ({ token }, remember) => {
   remember
-    ? jsCookie.set("token", token, { expires: 14 }) // Consider setting Secure attribute here
-    : jsCookie.set("token", token);
+    ? jsCookie.set("token", token, {
+        expires: 14,
+        secure: process.env.NODE_ENV === "production" ? true : false
+      })
+    : jsCookie.set("token", token, {
+        secure: process.env.NODE_ENV === "production" ? true : false
+      });
   Router.push("/dashboard");
 };
 
