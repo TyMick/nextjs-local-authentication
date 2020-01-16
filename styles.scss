@@ -1,8 +1,15 @@
-$enable-responsive-font-sizes: true;
+$enable-responsive-font-sizes: true; // Don't think this has any effect in Paper Dashboard React
+$code-font-size: 95%;
 @import "~bootstrap/scss/bootstrap.scss";
 
-$danger-color: #dc3545;
+$danger-color: #dc3545; // Orange does not feel dangerous
 @import "vendor/creative-tim/scss/paper-dashboard.scss";
+
+// Width for login/register form
+.auth-form {
+  width: 100%;
+  max-width: 450px;
+}
 
 // Reset .input-group-text styles closer to Bootstrap defaults
 .form-group,
@@ -140,8 +147,11 @@ a.dropdown-item {
   }
 }
 
-// Width for login/register form
-.auth-form {
-  width: 100%;
-  max-width: 450px;
+// Darken link color (too light on white background)
+a {
+  color: darken($primary-color, 10%);
+  &:hover,
+  &:focus {
+    color: darken($primary-color, 10%);
+  }
 }
