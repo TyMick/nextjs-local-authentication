@@ -88,7 +88,10 @@ export default () => {
                   <a>Settings</a>
                 </Link>
                 , you can change your username and/or password and even delete
-                your account, which completely removes its database entry.
+                your account, which completely removes its database entry. Note,
+                though, that you can do none of these things with the demo{" "}
+                <code>ty</code> account, for which the profile update and delete
+                account APIs will return <code>403</code> errors.
               </li>
               <li>
                 If you try fiddling around with multiple accounts, you&rsquo;ll
@@ -157,9 +160,7 @@ export default () => {
 
             <p>Thanks for checking out this demo!</p>
 
-            <p>
-              Sincerely,
-            </p>
+            <p>Sincerely,</p>
             <div className="signature">
               <a href="http://tymick.me">Ty</a>
             </div>

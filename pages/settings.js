@@ -68,6 +68,7 @@ function Settings({ token, userData }) {
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleteNetworkErrors, setDeleteNetworkErrors] = useState(false);
+  const [deleteProhibited, setDeleteProhibited] = useState(false);
 
   const submitProfileUpdates = async (values, { resetForm, setFieldError }) => {
     // Remove `profile updated` or `network errors` if there
@@ -121,6 +122,11 @@ function Settings({ token, userData }) {
             setUpdating(false);
           } else if (response.status === 401) {
             return logout();
+          } else if (response.status === 403) {
+            setFieldError(
+              "username",
+              "Changes to the demo account are prohibited."
+            );
           } else {
             // https://github.com/developit/unfetch#caveats
             let error = new Error(response.statusText);
@@ -143,6 +149,7 @@ function Settings({ token, userData }) {
   const toggleDeleteModal = () => {
     setDeleteModal(!deleteModal);
     setTimeout(setDeleteNetworkErrors, 1000, false); // Wait for modal animation to finish
+    setTimeout(setDeleteProhibited, 1000, false);
   };
 
   const closeModalBtn = (
@@ -163,6 +170,8 @@ function Settings({ token, userData }) {
 
       if (response.status === 200 || response.status === 401) {
         return logout();
+      } else if (response.status === 403) {
+        setDeleteProhibited(true);
       } else {
         let error = new Error(response.statusText);
         error.response = response;
@@ -327,9 +336,11 @@ function Settings({ token, userData }) {
                       </ModalHeader>
                       <ModalBody>Are you sure? This can't be undone.</ModalBody>
                       <ModalFooter>
-                        {deleteNetworkErrors ? (
+                        {deleteNetworkErrors || deleteProhibited ? (
                           <div className="text-danger">
-                            One of us is experiencing network errors 😞
+                            {deleteNetworkErrors
+                              ? "One of us is experiencing network errors 😞"
+                              : "Deleting the demo account is prohibited."}
                           </div>
                         ) : (
                           <>
