@@ -112,6 +112,10 @@ class Header extends React.Component {
     document.documentElement.classList.remove("nav-open");
   }
 
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateColor.bind(this));
+  }
+
   render() {
     return (
       <Navbar
