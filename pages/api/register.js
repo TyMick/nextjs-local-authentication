@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { MongoClient } from "mongodb";
 
 const saltRounds = 12;
-const dbName = "stars-align";
+const dbName = "nextjs-local-authentication";
 const colName = "users";
 
 export default async (req, res) => {

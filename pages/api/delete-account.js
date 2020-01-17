@@ -2,7 +2,7 @@
 
 import { MongoClient, ObjectId } from "mongodb";
 
-const dbName = "stars-align";
+const dbName = "nextjs-local-authentication";
 const colName = "users";
 
 export default async (req, res) => {
