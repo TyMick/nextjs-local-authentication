@@ -4,5 +4,6 @@
       "DB": "@db",
       "HOST": "@host"
     }
-  }
+  },
+  "public": true
 }
