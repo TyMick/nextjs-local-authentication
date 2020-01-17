@@ -13,7 +13,9 @@ export default async (req, res) => {
 
   // Prevent demo account from being changed
   if (userId === reservedId) {
-    res.status(403).json({ message: "Changes to the demo account are prohibited" });
+    res
+      .status(403)
+      .json({ message: "Changes to the demo account are prohibited" });
   } else {
     // Connect to database
     const client = new MongoClient(process.env.DB, {
@@ -27,7 +29,7 @@ export default async (req, res) => {
       let usernameConflict = false;
       if (updates.username) {
         usernameConflict = await col.findOne({
-          username: updates.username
+          username: { $regex: "^" + updates.username + "$", $options: "i" }
         });
       }
       if (usernameConflict) {

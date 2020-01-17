@@ -19,7 +19,9 @@ export default async (req, res) => {
     const col = client.db(dbName).collection(colName);
 
     // Check for username conflict
-    const usernameConflict = await col.findOne({ username: username });
+    const usernameConflict = await col.findOne({
+      username: { $regex: "^" + username + "$", $options: "i" }
+    });
     if (usernameConflict) {
       res.status(409).json({ message: "Username already taken" });
     } else {
