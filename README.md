@@ -6,14 +6,14 @@ This is the beginning stages of an app I'm building. As long as the app itself i
 
 ### Pages
 
-- This demo consists of five pages: a homepage, /dashboard, /settings, /register, and /login.
+- This demo consists of five pages: a [homepage](https://nextjs-local-authentication.tymick.me/), [/dashboard](https://nextjs-local-authentication.tymick.me/dashboard), [/settings](https://nextjs-local-authentication.tymick.me/settings), [/register](https://nextjs-local-authentication.tymick.me/register), and [/login](https://nextjs-local-authentication.tymick.me/login).
 - The dashboard and settings pages require aunthentication, so if you try to visit either before logging in, you'll be redirected to the login page.
 
 ### Accounts
 
-- You can register with any username (that doesn't currently exist in the database) and password you like, and your credentials (after your password has been hashed with [bcrypt](https://github.com/kelektiv/node.bcrypt.js)) will be stored in a database managed by [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) on a free plan.
-- If you'd rather not create an account, you can instead log in with username `ty` and password `password` (I promise I never use that in real life).
-- Once you've logged in, the dashboard page isn't terribly interesting, but if you head on over to Settings, you can change your username and/or password and even delete your account, which completely removes its database entry.
+- You can [register](https://nextjs-local-authentication.tymick.me/register) with any username (that doesn't currently exist in the database) and password you like, and your credentials (after your password has been hashed with [bcrypt](https://github.com/kelektiv/node.bcrypt.js)) will be stored in a database managed by [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) on a free plan.
+- If you'd rather not create an account, you can instead [log in](https://nextjs-local-authentication.tymick.me/login) with username `ty` and password `password` (I promise I never use that in real life).
+- Once you've logged in, the [dashboard page](https://nextjs-local-authentication.tymick.me/dashboard) isn't terribly interesting, but if you head on over to [Settings](https://nextjs-local-authentication.tymick.me/settings), you can change your username and/or password and even delete your account, which completely removes its database entry. Note, though, that you can do none of these things with the demo `ty` account, for which the profile update and delete account APIs will return `403` errors.
 - If you try fiddling around with multiple accounts, you'll see that you can't register an account with a username that already exists, and you also can't change your username to that of another account.
 
 ### Cookies
@@ -28,7 +28,7 @@ This is the beginning stages of an app I'm building. As long as the app itself i
 
 ### Serverless functions
 
-- This demo's APIs (and server-rendered pages) are serverless functions created using [Next.js](https://nextjs.org/) and (will soon be) hosted on [ZEIT Now](https://zeit.co/).
+- This demo's APIs (and server-rendered pages) are serverless functions created using [Next.js](https://nextjs.org/) and hosted on [ZEIT Now](https://zeit.co/).
 
 Thanks for checking out this demo!
 
