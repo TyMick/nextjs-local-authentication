@@ -31,9 +31,7 @@ export default async (req, res) => {
       { _id: new ObjectID(token) },
       {
         projection: {
-          username: 1,
-          display_name: 1,
-          plan: 1
+          username: 1
         }
       }
     );
@@ -45,9 +43,7 @@ export default async (req, res) => {
       // Send all-clear with user data
       res.status(200).json({
         userData: {
-          username: user.username,
-          displayName: user.display_name,
-          plan: user.plan
+          username: user.username
         }
       });
     }

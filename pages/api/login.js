@@ -12,7 +12,7 @@ const dbName = "stars-align";
 const colName = "users";
 
 export default async (req, res) => {
-  let { username, password } = JSON.parse(req.body);
+  const { username, password } = JSON.parse(req.body);
 
   // Connect to database
   const client = new MongoClient(process.env.DB, {

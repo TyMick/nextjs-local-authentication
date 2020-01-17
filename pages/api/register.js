@@ -29,10 +29,7 @@ export default async (req, res) => {
       // Insert user into database
       const result = await col.insertOne({
         username: username,
-        password_hash: passwordHash,
-        joined_on: new Date(),
-        display_name: "@" + username,
-        plan: "free"
+        password_hash: passwordHash
       });
 
       // Send all-clear with _id as token
