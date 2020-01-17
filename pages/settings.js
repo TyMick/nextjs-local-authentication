@@ -58,7 +58,6 @@ import fetch from "isomorphic-unfetch";
 import { Router } from "next/router";
 
 import Layout from "../components/layout";
-import "../styles.scss";
 import { withAuthSync, logout } from "../utils/auth";
 
 function Settings({ token, userData }) {
@@ -382,12 +381,6 @@ Settings.getInitialProps = async ctx => {
   // Grab user _id from auth cookie
   const { token } = nextCookie(ctx);
 
-  const redirectOnError = () => {
-    typeof window !== "undefined"
-      ? Router.push("/login")
-      : ctx.res.writeHead(302, { Location: "/login" }).end();
-  };
-
   try {
     // Ask for user data from profile API
     const response = await fetch(process.env.HOST + "/api/profile", {
@@ -402,10 +395,10 @@ Settings.getInitialProps = async ctx => {
       const props = response.json();
       return props;
     } else {
-      return redirectOnError();
+      return logout();
     }
   } catch (err) {
-    return redirectOnError();
+    return logout();
   }
 };
 

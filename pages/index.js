@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import { Container, Card } from "reactstrap";
 import Layout from "../components/layout";
-import "../styles.scss";
 
 export default () => {
   return (

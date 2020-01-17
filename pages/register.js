@@ -22,8 +22,6 @@ import * as Yup from "yup";
 import fetch from "isomorphic-unfetch";
 import { login } from "../utils/auth";
 
-import "../styles.scss";
-
 export default function Register() {
   const [loading, setLoading] = useState(false);
   const [networkErrors, setNetworkErrors] = useState(false);

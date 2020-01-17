@@ -3,7 +3,6 @@
 import React from "react";
 import { Container } from "reactstrap";
 import Layout from "../components/layout";
-import "../styles.scss";
 import { withAuthSync } from "../utils/auth";
 
 const Dashboard = () => (
