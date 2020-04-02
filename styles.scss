@@ -5,6 +5,13 @@ $code-font-size: 95%;
 $danger-color: #dc3545; // Orange does not feel dangerous
 @import "vendor/creative-tim/scss/paper-dashboard.scss";
 
+@import "~nprogress/nprogress.css";
+// https://github.com/rstacruz/nprogress/issues/56#issuecomment-41505532
+#nprogress {
+  position: relative;
+  z-index: 9999999;
+}
+
 // Width for login/register form
 .auth-form {
   width: 100%;
