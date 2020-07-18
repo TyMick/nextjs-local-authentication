@@ -173,7 +173,7 @@ export default () => {
                   This demo&rsquo;s APIs (and server-rendered pages) are
                   serverless functions created using{" "}
                   <a href="https://nextjs.org/">Next.js</a> and hosted on{" "}
-                  <a href="https://zeit.co/">ZEIT Now</a>.
+                  <a href="https://vercel.com/">Vercel</a>.
                 </li>
               </ul>
 
