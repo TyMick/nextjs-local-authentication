@@ -1,6 +1,6 @@
 ### ⚠️ Disclaimer ⚠️
 
-In the rare case that someone wants to use this boilerplate to bootstrap their own app, make sure to [update bcrypt to `>=5.0.0`](https://github.com/advisories/GHSA-5wg4-74h6-q47v) before your app goes live. I'm [not upgrading bcrypt yet](https://github.com/tywmick/nextjs-local-authentication/pull/4) in this demo because (1) it only affects passwords greater than 255 bytes; (2) this is just a demo, not an account connected to anything important; and (3) I don't have the time, presently.
+In the rare case that someone wants to use this boilerplate to bootstrap their own app, make sure to [update bcrypt to `>=5.0.0`](https://github.com/advisories/GHSA-5wg4-74h6-q47v) before your app goes live. I'm [not upgrading bcrypt yet](https://github.com/tywmick/nextjs-local-authentication/pull/4) in this demo because (1) it breaks the demo; (2) it only affects passwords greater than 255 bytes; (3) this is just a demo, not an account connected to anything important; and (4) I don't have the time, presently.
 
 # Next.js local authentication with MongoDB
 
