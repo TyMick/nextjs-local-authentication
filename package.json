@@ -1,6 +1,5 @@
 {
   "name": "nextjs-local-authentication",
-  "version": "0.1.0",
   "license": "MIT",
   "author": {
     "name": "Ty Mick",
@@ -11,19 +10,20 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "preinstall": "npx npm-force-resolutions"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "bcrypt": "^3.0.8",
-    "bootstrap": "^4.5.0",
+    "bootstrap": "^4.5.2",
     "dotenv": "^8.2.0",
     "formik": "^2.1.5",
     "isomorphic-unfetch": "^3.0.0",
     "js-cookie": "^2.2.1",
-    "mongodb": "^3.5.9",
-    "next": "^9.4.4",
+    "mongodb": "^3.6.2",
+    "next": "^9.5.3",
     "next-cookies": "^2.0.3",
     "next-fonts": "^0.19.0",
     "node-sass": "^4.14.1",
@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "prettier": "^1.19.1"
+  },
+  "resolutions": {
+    "node-fetch": "^2.6.1"
   }
 }
