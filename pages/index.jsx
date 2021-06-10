@@ -31,7 +31,7 @@ export default () => {
 
               <p>Greetings, traveler!</p>
               <p>
-                This is the beginning stages of an app I&rsquo;m building. As
+                This is the beginning stages of an app I started building. As
                 long as the app itself is half-finished, I figure this shell is
                 a satisfactory portfolio piece in the meantime. Please enjoy{" "}
                 <a href="https://github.com/TyWMick/nextjs-local-authentication">
